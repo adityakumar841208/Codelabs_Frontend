@@ -1,11 +1,7 @@
-
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <h1 className="text-3xl font-bold underline">
       Code Labs
-    </div>
-  );
+    </h1>
+  )
 }
-
-export default App;
