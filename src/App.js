@@ -1,7 +1,13 @@
-export default function App() {
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoute from './routes/Route';
+
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Code Labs
-    </h1>
-  )
+    <Router>
+      <AppRoute />
+    </Router>
+  );
 }
+
+export default App;
