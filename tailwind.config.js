@@ -12,7 +12,8 @@ module.exports = {
         customBorder:'rgb(44 52 55)'
       },
       colors:{
-        primary:'rgb(24 118 45)'
+        primary:'rgb(24 118 45)',
+        primaryHover:'rgb(15 75 28)',
       },
     },
   },

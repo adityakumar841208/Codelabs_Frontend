@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 const Landing = lazy(() => import('../components/LandingPage'));
 const Login = lazy(() => import('../components/Login'));
 const Signup = lazy(() => import('../components/Signup'));
+const Home = lazy(() => import('../components/Home'));
+
 
 function AppRoutes() {
   return (
@@ -13,6 +15,7 @@ function AppRoutes() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Suspense>
   );
