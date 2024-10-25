@@ -37,7 +37,7 @@ const Navbar = () => {
                         <Button variant="contained" className='hover:bg-primaryHover text-white' sx={{
                             color: 'white'
                         }}>AI Chat</Button>
-                        <div className="flex items-center justify-center ml-12 p-2 bg-gray-900 rounded-full hover:bg-gray-800 transition duration-300 ease-in-out">
+                        <div className="flex items-center justify-center ml-12 p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out">
                             <NotificationsIcon className="text-white" fontSize="medium" />
                         </div>
                     </div>

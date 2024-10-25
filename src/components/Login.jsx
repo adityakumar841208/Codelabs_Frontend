@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { z } from 'zod';
 
 // Zod Schemas for validation
+
 const mobileLoginSchema = z.object({
   mobileOrUsername: z.string().min(3, 'Username must be at least 3 characters').or(
     z.string().regex(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
@@ -18,6 +20,7 @@ const emailLoginSchema = z.object({
 });
 
 const LoginPage = () => {
+  // const navigate = useNavigation();
   const [isMobileLogin, setIsMobileLogin] = useState(true);
   const [formData, setFormData] = useState({
     usernameOrContact: '',
@@ -30,24 +33,40 @@ const LoginPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Choose schema based on login type
     const validationSchema = isMobileLogin ? mobileLoginSchema : emailLoginSchema;
     const result = validationSchema.safeParse({
-      mobileOrUsername: formData.usernameOrContact,
-      emailOrUsername: formData.usernameOrContact,
+      [isMobileLogin ? 'mobileOrUsername' : 'emailOrUsername']: formData.usernameOrContact,
       password: formData.password,
     });
 
+
+    // Data Submission to Backend
     if (!result.success) {
       const errorMessages = result.error.flatten().fieldErrors;
       setErrors(errorMessages);
     } else {
-      setErrors({});
-      // Proceed with login logic, API call, etc.
-      console.log('Login successful!');
+      try {
+        setErrors({});
+        const response = await axios.post('Backend url', formData, {
+          withCredentials: true,
+        });
+        alert(response.data);
+        if (response.data === 'Successfully logged in') {
+          // return navigate('/home')
+        }
+
+        setFormData({
+          usernameOrContact: '',
+          password: '',
+        });
+
+      } catch (error) {
+        console.error('Error signing in:', error);
+      }
     }
   };
 
@@ -55,7 +74,7 @@ const LoginPage = () => {
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md mb-20">
         <h2 className="text-2xl font-bold text-center text-white mb-6">Login</h2>
-        
+
         {/* Toggle Login Type */}
         <div className="flex justify-center space-x-4 mb-6">
           <button
@@ -86,8 +105,9 @@ const LoginPage = () => {
               placeholder={isMobileLogin ? 'Enter mobile number or username' : 'Enter email or username'}
               className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
             />
-            {errors.mobileOrUsername && <p className="text-red-500 text-sm">{errors.mobileOrUsername[0]}</p>}
-            {errors.emailOrUsername && <p className="text-red-500 text-sm">{errors.emailOrUsername[0]}</p>}
+            {isMobileLogin && errors.mobileOrUsername && <p className="text-red-500 text-sm">{errors.mobileOrUsername[0]}</p>}
+            {!isMobileLogin && errors.emailOrUsername && <p className="text-red-500 text-sm">{errors.emailOrUsername[0]}</p>}
+
           </div>
 
           <div className="mb-4">

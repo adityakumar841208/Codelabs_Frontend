@@ -5,7 +5,7 @@ const Navigation = () => {
     return (
         <> 
             {/* <div></div> */}
-            <div className='fixed border-customBorder border-r-2 min-h-screen w-56 h-full'>
+            <div className='fixed border-customBorder border-r-2 min-h-screen w-56 h-full overflow-y-auto'>
                 <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', color: 'white' }}>
                     Navigation
                 </Typography>

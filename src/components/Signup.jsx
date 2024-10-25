@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; 
 import { z } from 'zod';
 
 // Zod schema for validation
@@ -19,7 +20,7 @@ const SignUp = () => {
     emailOrPhone: '',
     password: '',
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isOTPScreen, setIsOTPScreen] = useState(false);
   const otpRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -29,7 +30,7 @@ const SignUp = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     const validationSchema = isEmailSignUp ? emailSchema : phoneSchema;
@@ -40,7 +41,21 @@ const SignUp = () => {
       setErrors(errorMessages);
     } else {
       setErrors({});
-      // Trigger OTP verification here (could be an API call).
+      try {
+        const response = await axios.post(`Backend url`, formData, {
+          withCredentials: true,
+        });
+        alert(response.data);
+        // if (response.data === 'User signed up successfully') {
+        //   navigate('/')
+        // }
+        setFormData({
+          emailOrPhone: '',
+          password: '',
+        })
+      } catch (error) {
+        console.error('Error signing in:', error);
+      }
       setIsOTPScreen(true);
     }
   };
@@ -134,7 +149,7 @@ const SignUp = () => {
             <button
               type="button"
               className="w-full py-2 mt-4 text-white bg-primary hover:bg-primaryHover transition"
-              onClick={() => console.log('OTP Submitted!')}
+              onClick={() => console.log(otpRefs.map((item) => item.current.value))}
             >
               Submit OTP
             </button>

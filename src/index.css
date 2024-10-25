@@ -6,3 +6,32 @@ body{
     color: white;
     background-color: rgb(13 18 28);
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(55 65 81) inset; /* Replace #374151 with your preferred color */
+  box-shadow: 0 0 0px 1000px rgb(55 65 81) inset;
+  -webkit-text-fill-color: #ffffff; /* Replace #ffffff with your preferred text color */
+}
+
+/* Customize the scrollbar width */
+::-webkit-scrollbar {
+  width: 5px;
+  }
+  
+  /* Customize the scrollbar track */
+  ::-webkit-scrollbar-track {
+  background: gray;
+  }
+  
+  /* Customize the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+  background: rgb(24 118 45);
+  }
+  
+  /* Customize the scrollbar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+  background: rgb(15 75 28);
+  }
+
