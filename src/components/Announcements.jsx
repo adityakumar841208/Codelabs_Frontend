@@ -5,7 +5,7 @@ const Announcements = () => {
     return (
         <>
             <div></div>
-            <div className='fixed border-customBorder border-l-2 min-h-screen overflow-y-auto'>
+            <div className='fixed border-customBorder border-l-2 min-h-screen overflow-y-auto bg-gray-900'>
                 <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', color: 'white' }}>
                     Announcements & Updates
                 </Typography>

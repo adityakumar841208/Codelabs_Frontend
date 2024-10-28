@@ -36,7 +36,7 @@ const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares,
                         <span className="ml-1">{likes}</span>
                     </button>
                 </div>
-                <div className="flex items-center justify-evenly space-x-2">
+                <div className="flex items-center justify-evenly space-x-2 gap-2">
                     <button className="flex items-center">
                         <InsertCommentIcon />
                         <span className="ml-1">{comments}</span>

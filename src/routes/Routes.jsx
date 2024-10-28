@@ -6,6 +6,11 @@ const Landing = lazy(() => import('../components/LandingPage'));
 const Login = lazy(() => import('../components/Login'));
 const Signup = lazy(() => import('../components/Signup'));
 const Home = lazy(() => import('../components/Home'));
+const Help = lazy(() => import('../components/Help'));
+const Feedback = lazy(() => import('../components/Feedback'));
+const ServicesPage = lazy(() => import('../components/Services'));
+
+
 
 
 function AppRoutes() {
@@ -16,6 +21,9 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/services" element={<ServicesPage />} />
         </Routes>
       </Suspense>
   );

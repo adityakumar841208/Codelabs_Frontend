@@ -1,33 +1,32 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom'
+
 
 const Navigation = () => {
+    const navigate = useNavigate();
+
     return (
-        <> 
-            {/* <div></div> */}
-            <div className='fixed border-customBorder border-r-2 min-h-screen w-56 h-full overflow-y-auto'>
-                <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', color: 'white' }}>
-                    Navigation
-                </Typography>
-                <List>
-                    <ListItem button component="li">
-                        <ListItemText primary="User Profile" sx={{ color: 'white' }} />
-                    </ListItem>
-                    <ListItem button component="li">
-                        <ListItemText primary="Services" sx={{ color: 'white' }} />
-                    </ListItem>
-                    <ListItem button component="li">
-                        <ListItemText primary="Feedback" sx={{ color: 'white' }} />
-                    </ListItem>
-                    <ListItem button component="li">
-                        <ListItemText primary="Help" sx={{ color: 'white' }} />
-                    </ListItem>
-                    <ListItem button component="li">
-                        <ListItemText primary="Logout" sx={{ color: 'white' }} />
-                    </ListItem>
-                </List>
-            </div>
-        </>
+        <div className="fixed border-r-2 border-gray-800 min-h-screen w-56 h-full overflow-y-auto bg-gray-900 text-white">
+            <ul className="space-y-1">
+                <li className="flex items-center space-x-3 px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer">
+                    <AccountCircleIcon className="text-white text-3xl border border-primary rounded-full" fontSize="large" />
+                    <span className="text-white">User Profile</span>
+                </li>
+                <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/services')}>
+                    <span className="text-white">Services</span>
+                </li>
+                <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/feedback')}>
+                    <span className="text-white">Feedback</span>
+                </li>
+                <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/help')}>
+                    <span className="text-white">Help</span>
+                </li>
+                <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/')}>
+                    <span className="text-red-500 text-bold">Logout</span>
+                </li>
+            </ul>
+        </div>
     );
 };
 
