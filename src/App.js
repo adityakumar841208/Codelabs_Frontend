@@ -6,6 +6,7 @@ import Footer from './utilitycomponents/Footer';
 import { ThemeProvider } from '@emotion/react';
 import Theme from './theme/Theme';
 
+
 function App() {
 
   return (
@@ -24,7 +25,7 @@ function AppContent() {
     <>
       <Navbar />
       <AppRoutes />
-      {location.pathname !== '/home' && <Footer />}
+      {(!location.pathname.startsWith('/home')) && <Footer />}
     </>
   );
 }

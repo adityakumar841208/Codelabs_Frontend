@@ -1,18 +1,14 @@
 import React from 'react';
 // import { Typography } from '@mui/material';
 import Post from '../post/Post';
+import PostOption from '../post/PostOption';
 
 const Content = () => {
   return (
     <>
       <div></div>
+      <PostOption />
       <div className='h-full m-2 relative rounded-3xl'>
-        {/* <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, color: 'white' }}>
-        Content Section
-      </Typography>
-      <Typography variant="body1" sx={{ textAlign: 'center', color: 'white' }}>
-        This is the main content area.
-      </Typography> */}
         <Post
           username="Aathithyabalan J"
           jobTitle="Full-Stack Engineer Intern"
