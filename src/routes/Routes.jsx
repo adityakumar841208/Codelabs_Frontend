@@ -11,6 +11,8 @@ const Help = lazy(() => import('../components/Help'));
 const Feedback = lazy(() => import('../components/Feedback'));
 const ServicesPage = lazy(() => import('../components/Services'));
 const Profile = lazy(() => import('../components/Profile'));
+const Community = lazy(() => import('../components/Community'));
+
 
 
 function AppRoutes() {
@@ -21,7 +23,8 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />}>
-          <Route path="profile" element={<Profile/>} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="community" element={<Community />} />
           <Route path="help" element={<Help />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="services" element={<ServicesPage />} />

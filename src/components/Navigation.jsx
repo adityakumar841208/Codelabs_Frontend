@@ -16,6 +16,9 @@ const Navigation = () => {
                 <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/home')}>
                     <span className="text-black">Dashboard</span>
                 </li>
+                <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/home/community')}>
+                    <span className="text-black">Community</span>
+                </li>
                 <li className="px-4 py-2 rounded-sm hover:bg-primaryHover transition duration-300 ease-in-out cursor-pointer" onClick={()=>navigate('/home/services')}>
                     <span className="text-black">Services</span>
                 </li>

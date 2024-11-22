@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        'coverImg':'./public/bg.jpg'
+      },
       borderColor: {
         customBorder:'rgb(44 52 55)'
       },

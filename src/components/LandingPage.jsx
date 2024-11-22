@@ -5,7 +5,7 @@ const LandingPage = () => {
     return (
         <div className='hero flex justify-center items-center w-full h-screen text-text pb-28'>
             <div className="intro w-1/2 text-4xl">
-                <h1 className='ml-24'>Welcome to <span className='font-bold font-serif'>CodeLabs.</span><br /> Your Gateway to Professional Software Development.
+                <h1 className='ml-24'>Welcome to <span className='font-bold font-serif'>Code<span className='text-blue-950'>Labs</span>.</span><br /> Your Gateway to Professional Software Development.
 
                     <br /> we provide <span></span>
                     <ReactTyped className='text-primary' strings={["Quizes.", "Courses About Programming.", "Ai Chat.", "Developers Community."]} typeSpeed={100} loop />

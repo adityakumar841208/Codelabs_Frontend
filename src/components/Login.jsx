@@ -1,148 +1,96 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { z } from 'zod';
+import React from "react";
+import { TextField, Button, InputAdornment } from "@mui/material";
+import PhoneIcon from "@mui/icons-material/Phone";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import {Link} from "react-router-dom"
 
-// Zod Schemas for validation
-
-const mobileLoginSchema = z.object({
-  mobileOrUsername: z.string().min(3, 'Username must be at least 3 characters').or(
-    z.string().regex(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
-  ),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
-});
-
-const emailLoginSchema = z.object({
-  emailOrUsername: z.string().min(3, 'Username must be at least 3 characters').or(
-    z.string().email('Invalid email address')
-  ),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
-});
-
-const LoginPage = () => {
-  // const navigate = useNavigation();
-  const [isMobileLogin, setIsMobileLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    usernameOrContact: '',
-    password: '',
-  });
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Choose schema based on login type
-    const validationSchema = isMobileLogin ? mobileLoginSchema : emailLoginSchema;
-    const result = validationSchema.safeParse({
-      [isMobileLogin ? 'mobileOrUsername' : 'emailOrUsername']: formData.usernameOrContact,
-      password: formData.password,
-    });
-
-
-    // Data Submission to Backend
-    if (!result.success) {
-      const errorMessages = result.error.flatten().fieldErrors;
-      setErrors(errorMessages);
-    } else {
-      try {
-        setErrors({});
-        const response = await axios.post('Backend url', formData, {
-          withCredentials: true,
-        });
-        alert(response.data);
-        if (response.data === 'Successfully logged in') {
-          // return navigate('/home')
-        }
-
-        setFormData({
-          usernameOrContact: '',
-          password: '',
-        });
-
-      } catch (error) {
-        console.error('Error signing in:', error);
-      }
-    }
-  };
-
+const Signup = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md mb-20">
-        <h2 className="text-2xl font-bold text-center text-white mb-6">Login</h2>
+    <div className="flex flex-wrap px-6 items-center justify-around min-h-screen -mt-8">
+      {/* Image Section */}
+      <div className="img w-full md:w-1/3 mb-6 md:mb-0">
+        <img src="../comp.webp" alt="Signup illustration" className="w-full h-auto" />
+      </div>
 
-        {/* Toggle Login Type */}
-        <div className="flex justify-center space-x-4 mb-6">
-          <button
-            className={`px-4 py-2 rounded-lg ${isMobileLogin ? 'bg-primary text-white' : 'bg-gray-700 text-gray-300'}`}
-            onClick={() => setIsMobileLogin(true)}
+      {/* Form Section */}
+      <div className="flex flex-col items-center justify-center px-4 w-full md:w-1/2">
+        {/* Signup Container */}
+        <div className="bg-slate-400 shadow-md rounded-lg p-6 w-full max-w-sm">
+          {/* Title */}
+          <h1 className="text-center text-lg font-bold mb-7">Log in</h1>
+
+          {/* Form */}
+          <form className="flex flex-col space-y-3">
+            <TextField
+              label="Mobile Number"
+              variant="outlined"
+              fullWidth
+              InputProps={{
+                sx: { borderRadius: "20px" },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <PhoneIcon />
+                  </InputAdornment>
+                ),
+              }}
+              InputLabelProps={{
+                sx: { borderRadius: "20px" },
+              }}
+            />
+            <TextField
+              label="Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              InputProps={{
+                sx: { borderRadius: "20px" },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <VisibilityIcon />
+                  </InputAdornment>
+                ),
+              }}
+              InputLabelProps={{
+                sx: { borderRadius: "20px" },
+              }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              className="w-full bg-primary hover:bg-primaryHover text-white py-2 mt-3"
+              sx={{ borderRadius: "20px" }}
+            >
+              Login
+            </Button>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center justify-between mb-4 mt-7">
+            <hr className="w-full border-t border-customBorder" />
+            <span className="px-2 text-black text-sm">OR</span>
+            <hr className="w-full border-t border-customBorder" />
+          </div>
+
+          {/* Email Login */}
+          <Button
+            variant="contained"
+            className="w-full hover:bg-primaryHover text-white py-2 mb-4"
+            sx={{ borderRadius: "20px" }}
           >
-            Mobile
-          </button>
-          <button
-            className={`px-4 py-2 rounded-lg ${!isMobileLogin ? 'bg-primary text-white' : 'bg-gray-700 text-gray-300'}`}
-            onClick={() => setIsMobileLogin(false)}
-          >
-            Email
-          </button>
+            Login with Email
+          </Button>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block mb-2 text-white" htmlFor="usernameOrContact">
-              {isMobileLogin ? 'Mobile Number or Username' : 'Email or Username'}
-            </label>
-            <input
-              type="text"
-              id="usernameOrContact"
-              name="usernameOrContact"
-              value={formData.usernameOrContact}
-              onChange={handleChange}
-              placeholder={isMobileLogin ? 'Enter mobile number or username' : 'Enter email or username'}
-              className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
-            />
-            {isMobileLogin && errors.mobileOrUsername && <p className="text-red-500 text-sm">{errors.mobileOrUsername[0]}</p>}
-            {!isMobileLogin && errors.emailOrUsername && <p className="text-red-500 text-sm">{errors.emailOrUsername[0]}</p>}
-
-          </div>
-
-          <div className="mb-4">
-            <label className="block mb-2 text-white" htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
-            />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password[0]}</p>}
-          </div>
-
-          <div className="flex justify-between mb-4">
-            <Link to="#" className="text-primary hover:underline">Forgot Password?</Link>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-primary text-white py-3 rounded hover:bg-primaryHover transition"
-          >
-            Login
-          </button>
-
-          <p className="text-center text-white mt-4">
-            Don’t have an account?{' '}
-            <Link to="/signup" className="text-primary hover:underline">Sign Up</Link>
-          </p>
-        </form>
+        {/* Footer */}
+        <div className="mt-4 text-center text-sm w-full max-w-sm rounded-lg p-4 bg-slate-400">
+          New User ?{" "}
+          <Link to="/signup" className="text-primary">
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default Signup;

@@ -95,7 +95,7 @@ const Profile = () => {
                 <div className="mt-4 space-y-4">
                     {profile.ongoingProjects.map((item) => (
                         <>
-                            <div className="flex items-center space-x-4 bg-slate-700 p-4 rounded-md" key={item.name}>
+                            <div className="flex items-center space-x-4 bg-slate-400 p-4 rounded-md" key={item.name}>
                                 <img
                                     src={item.image}
                                     alt="CodeLabs"
@@ -103,7 +103,7 @@ const Profile = () => {
                                 />
                                 <div>
                                     <h4 className="font-semibold">{item.name}</h4>
-                                    <p className="text-sm text-gray-400">
+                                    <p className="text-sm text-black">
                                         {item.description}
                                     </p>
                                 </div>

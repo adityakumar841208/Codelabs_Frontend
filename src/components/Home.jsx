@@ -8,6 +8,7 @@ import FeedbackPage from './Feedback';
 import Footer from '../utilitycomponents/Footer';
 import { useLocation } from 'react-router-dom';
 import Profile from './Profile';
+import Community from './Community';
 
 const Home = () => {
   const location = useLocation();
@@ -25,6 +26,8 @@ const Home = () => {
         return <FeedbackPage />;
       case '/home/profile':
         return <Profile />;
+      case '/home/community':
+        return <Community />;
       default:
         return (
           <div className="flex items-center justify-center h-full">
