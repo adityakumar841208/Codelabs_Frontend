@@ -5,15 +5,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'radial': 'radial-gradient(circle, rgba(18,56,7,0.98) 0%, rgba(19,21,34,1) 38%)',
-      },
       borderColor: {
         customBorder:'rgb(44 52 55)'
       },
       colors:{
+        text:'#000000',
         primary:'rgb(24 118 45)',
         primaryHover:'rgb(15 75 28)',
+        bg:'#94a3b8',
+        bglite:'#e2e8f0',
       },
     },
   },

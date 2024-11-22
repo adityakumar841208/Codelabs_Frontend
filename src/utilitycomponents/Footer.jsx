@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 py-8">
+    <footer className="bg-slate-200 py-8 border-t-2 border-customBorder">
       <div className="container mx-auto px-4">
         <div className='flex p-2 justify-around align-middle'>
           <div className="logo">CodeLabs Logo</div>

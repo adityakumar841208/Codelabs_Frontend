@@ -30,13 +30,13 @@ const ServicesPage = () => {
             <div>
                 <div className="flex items-center justify-center min-h-screen text-white">
                     <div className="w-full max-w-2xl p-8">
-                        <h2 className="text-2xl font-bold text-center text-primary mb-6">Our Services</h2>
+                        <h2 className="text-2xl font-bold text-center text-black mb-6">Our Services</h2>
 
                         <div className="space-y-6">
                             {servicesData.map((service, index) => (
-                                <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-md">
+                                <div key={index} className="bg-slate-400 p-6 rounded-lg shadow-md">
                                     <h3 className="text-xl font-semibold text-primary mb-2">{service.title}</h3>
-                                    <p className="text-gray-300 mb-4">{service.description}</p>
+                                    <p className="text-black mb-4">{service.description}</p>
                                     <Link to={service.link}>
                                         <button className="bg-primary text-gray-900 py-2 px-4 rounded hover:bg-primaryHover transition">
                                             Learn More

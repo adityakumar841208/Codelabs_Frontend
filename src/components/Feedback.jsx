@@ -48,8 +48,8 @@ const FeedbackPage = () => {
 
     return (
         <div className='grid grid-cols-12 min-h-screen'>
-            <div className="flex items-center justify-center min-h-screen text-white col-span-12">
-                <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-lg">
+            <div className="flex items-center justify-center min-h-screen text-black col-span-12">
+                <div className="bg-slate-400 p-8 rounded-lg shadow-lg w-full max-w-lg">
                     <h2 className="text-2xl font-bold text-center mb-6 text-primaryHover">Feedback</h2>
 
                     <form onSubmit={handleSubmit}>
@@ -61,9 +61,9 @@ const FeedbackPage = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                InputLabelProps={{ style: { color: '#cbd5e1' } }}
-                                InputProps={{ style: { color: '#f1f5f9', backgroundColor: 'rgb(55 65 81)' } }}
-                                className="text-white w-full p-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
+                                InputLabelProps={{ style: { color: 'black' } }}
+                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
+                                className="text-black w-full p-3 bg-gray-700 border border-gray-600 rounded focus:ring focus:ring-primary"
                             />
                             {errors.name && <p className="text-red-500 text-sm">{errors.name[0]}</p>}
                         </div>
@@ -77,8 +77,8 @@ const FeedbackPage = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Enter your email"
-                                InputLabelProps={{ style: { color: '#cbd5e1' } }}
-                                InputProps={{ style: { color: '#f1f5f9', backgroundColor: 'rgb(55 65 81)' } }}
+                                InputLabelProps={{ style: { color: 'black' } }}
+                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
                                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
                             />
                             {errors.email && <p className="text-red-500 text-sm">{errors.email[0]}</p>}
@@ -91,15 +91,15 @@ const FeedbackPage = () => {
                                 multiline
                                 rows={4}
                                 fullWidth
-                                InputLabelProps={{ style: { color: '#cbd5e1' } }}
-                                InputProps={{ style: { color: '#f1f5f9', backgroundColor: 'rgb(55 65 81)' } }}
+                                InputLabelProps={{ style: { color: 'black' } }}
+                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
                             />
                             {errors.message && <p className="text-red-500 text-sm">{errors.message[0]}</p>}
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-primary text-white py-3 rounded hover:bg-primaryHover transition"
+                            className="w-full bg-primary text-black py-3 rounded hover:bg-primaryHover transition"
                         >
                             Submit Feedback
                         </button>

@@ -18,43 +18,43 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='h-16 w-full flex justify-around items-center border-customBorder border-b-2 fixed top-0 z-10 px-4 backdrop-blur-sm bg-gray-900'>
+            <div className='h-16 w-full flex justify-around items-center border-customBorder border-b-2 fixed top-0 z-10 px-4 backdrop-blur-sm bg-slate-200 border'>
                 {/* Logo */}
-                <div className="logo text-xl text-white">
+                <div className="logo text-xl text-black">
                     <Link to='/'>
                         CodeLabs
                     </Link>
                 </div>
 
                 {/* Search Bar */}
-                <div className='flex items-center justify-center rounded-md border-customBorder border overflow-hidden'>
+                <div className='flex items-center justify-center rounded-lg border-customBorder border overflow-hidden'>
                     <input
                         type="text"
                         placeholder="Search..."
-                        className='h-10 w-32 sm:w-64 px-4 py-2 rounded-l-md focus:outline-none bg-gray-900 text-white'
+                        className='h-10 w-32 sm:w-64 px-4 py-2 rounded-l-md focus:outline-none  text-black'
                     />
-                    <div className="bg-primary p-2 rounded-r-md cursor-pointer hover:bg-primaryHover h-10 text-white">
+                    <div className="bg-primary p-2 rounded-r-md cursor-pointer hover:bg-primaryHover h-10 text-black">
                         <SearchIcon />
                     </div>
                 </div>
 
                 {/* Links and Notifications on larger screens */}
-                <div className="hidden sm:flex items-center text-lg gap-6 text-white">
+                <div className="hidden sm:flex items-center text-lg gap-6 text-black">
                     <Link to='/signup'>Signup</Link>
                     <Link to='/signup'>Quiz</Link>
                     <Link to='/login'>Courses</Link>
-                    <Button variant="contained" className='hover:bg-primaryHover text-white' sx={{ color: 'white' }}>
+                    <Button variant="contained" className='hover:bg-primaryHover text-black' sx={{ color: 'white' }}>
                         AI Chat
                     </Button>
                     <div className="flex items-center justify-center p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12">
-                        <NotificationsIcon className="text-white" fontSize="medium" />
+                        <NotificationsIcon className="text-black" fontSize="medium" />
                     </div>
                 </div>
 
                 {/* Hamburger Menu for smaller screens */}
                 <div className="sm:hidden flex items-center">
                     <IconButton onClick={handleMenuOpen} color="inherit">
-                        <MenuIcon className="text-white" />
+                        <MenuIcon className="text-black" />
                     </IconButton>
                     <Menu
                         anchorEl={anchorEl}
@@ -105,7 +105,7 @@ const Navbar = () => {
                             onClick={handleMenuClose}
                             className="w-full text-center hover:bg-primaryHover"
                         >
-                            <Button variant="contained" className='hover:bg-primaryHover text-white' sx={{ color: 'white' }}>
+                            <Button variant="contained" className='hover:bg-primaryHover text-black' sx={{ color: 'white' }}>
                                 AI Chat
                             </Button>
                         </MenuItem>

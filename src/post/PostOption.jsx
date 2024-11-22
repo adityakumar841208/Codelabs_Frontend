@@ -6,18 +6,18 @@ import ArticleIcon from '@mui/icons-material/Article';
 
 const PostOption = () => {
   return (
-    <div className="bg-slate-900 p-4 rounded-md shadow-md m-2 border">
+    <div className="bg-slate-400 p-4 rounded-md shadow-md m-2 border border-customBorder">
       {/* Start a Post Section */}
-      <div className="flex items-center space-x-3 p-3 bg-gray-900 rounded-lg mb-4">
+      <div className="flex items-center space-x-3 p-3 bg-slate-200 rounded-lg mb-4 border border-customBorder">
         <img
           src="./comp.webp"
           alt="User Avatar"
-          className="rounded-full w-10 h-10 border"
+          className="rounded-full w-10 h-10 border border-customBorder"
         />
         <input
           type="text"
           placeholder="Write here something..."
-          className="w-full p-2 bg-gray-800 rounded-full text-gray-300 placeholder-gray-500 outline-none border"
+          className="w-full p-2 bg-slate-400 rounded-full text-black placeholder-black outline-none border"
         />
       </div>
 

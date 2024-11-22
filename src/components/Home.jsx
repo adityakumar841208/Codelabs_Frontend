@@ -7,6 +7,7 @@ import ServicesPage from './Services';
 import FeedbackPage from './Feedback';
 import Footer from '../utilitycomponents/Footer';
 import { useLocation } from 'react-router-dom';
+import Profile from './Profile';
 
 const Home = () => {
   const location = useLocation();
@@ -22,6 +23,8 @@ const Home = () => {
         return <ServicesPage />;
       case '/home/feedback':
         return <FeedbackPage />;
+      case '/home/profile':
+        return <Profile />;
       default:
         return (
           <div className="flex items-center justify-center h-full">

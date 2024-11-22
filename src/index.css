@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body{
-    color: white;
-    background-color: rgb(13 18 28);
+    color: black !important;
+    background-color: rgb(238, 234, 234) !important;
 }
 
 input:-webkit-autofill,

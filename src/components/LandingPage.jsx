@@ -3,7 +3,7 @@ import { ReactTyped } from 'react-typed'
 
 const LandingPage = () => {
     return (
-        <div className='hero flex justify-center items-center w-full h-screen text-white pb-28'>
+        <div className='hero flex justify-center items-center w-full h-screen text-text pb-28'>
             <div className="intro w-1/2 text-4xl">
                 <h1 className='ml-24'>Welcome to <span className='font-bold font-serif'>CodeLabs.</span><br /> Your Gateway to Professional Software Development.
 
