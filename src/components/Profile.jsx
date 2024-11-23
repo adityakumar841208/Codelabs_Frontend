@@ -1,22 +1,55 @@
-import React from "react";
+import React,{useState} from "react";
 import EditIcon from '@mui/icons-material/Edit';
-import { Button } from "@mui/material";
+import { Button, Modal, Box } from '@mui/material';
+
 import { useSelector, useDispatch } from "react-redux"
 
 const Profile = () => {
     const profile = useSelector((state) => state.profile);
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
+
+    const handleEdit = () => setOpen(true);
+    const handleCloseEdit = () => setOpen(false);
+
+    // box style 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'background.paper',
+        boxShadow: 24,
+        p: 4,
+        borderRadius: '8px',
+    };
+    
 
     return (
-        <div className="text-black min-h-screen p-4">
+        <div className="text-black min-h-screen p-2">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6 px-2">
+            <div className="flex items-center justify-between mb-4 px-2">
                 <div>
                     <h1 className="text-xl font-semibold">{profile.username}</h1>
                 </div>
+
                 <div>
-                    <Button className="text-xl font-semibold rounded-lg hover:bg-primaryHover" sx={{ background: "rgb(24 118 45)", color: "black" }}><EditIcon /> Edit</Button>
+                    <Button className="text-xl font-semibold rounded-lg hover:bg-primaryHover" sx={{ background: "rgb(24 118 45)", color: "black" }} onClick={handleEdit}><EditIcon /> Edit</Button>
+                    <Modal
+                        open={open}
+                        onClose={handleCloseEdit}
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description"
+                    >
+                        <Box sx={{ ...style, width: 400 }}>
+                            <h2 id="parent-modal-title" className="font-bold text-2xl">Edit</h2>
+                            <p id="parent-modal-description">
+                                Edit Your Details
+                            </p>
+                        </Box>
+                    </Modal>
                 </div>
+
             </div>
 
             <hr className="m-3 border-customBorder"></hr>

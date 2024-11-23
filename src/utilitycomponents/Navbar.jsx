@@ -41,12 +41,11 @@ const Navbar = () => {
                 {/* Links and Notifications on larger screens */}
                 <div className="hidden sm:flex items-center text-lg gap-6 text-white">
                     <Link to='/signup'>Signup</Link>
-                    <Link to='/signup'>Quiz</Link>
                     <Link to='/login'>Courses</Link>
                     <Button variant="contained" className='hover:bg-primaryHover text-white' sx={{ color: 'white' }}>
                         AI Chat
                     </Button>
-                    <div className="flex items-center justify-center p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12">
+                    <div className="flex items-center justify-center p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12 cursor-pointer">
                         <NotificationsIcon className="text-white" fontSize="medium" />
                     </div>
                 </div>

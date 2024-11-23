@@ -9,6 +9,7 @@ import Footer from '../utilitycomponents/Footer';
 import { useLocation } from 'react-router-dom';
 import Profile from './Profile';
 import Community from './Community';
+import ShowChat from './ShowChat';
 
 const Home = () => {
   const location = useLocation();
@@ -28,6 +29,8 @@ const Home = () => {
         return <Profile />;
       case '/home/community':
         return <Community />;
+      case '/home/community/chat':
+        return <ShowChat />;
       default:
         return (
           <div className="flex items-center justify-center h-full">

@@ -23,12 +23,6 @@ const initialState = {
         "Node.js",
         "SQL",
         "MongoDB",
-        "Bootstrap",
-        "JQuery",
-        "React Native",
-        "Node.js",
-        "SQL",
-        "MongoDB",
     ],
     ongoingProjects: [
         {

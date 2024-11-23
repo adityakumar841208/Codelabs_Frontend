@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const Community = () => {
+    const navigate = useNavigate()
     const [isOnline, setIsOnline] = useState(true);
     const [isUnseen, setIsUnseen] = useState(true);
     const data = [
-        { name: 'User 1', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User 1', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya"},
         { name: 'User 2', isOnline: false, isUnseen: true, recentmessage: "hello this is aditya" },
         { name: 'User 3', isOnline: true, isUnseen: true, recentmessage: "hello this is aditya" },
         { name: 'User 4', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
         { name: 'User 5', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
     ]
+
+    const showChat = (itemname) => {
+        console.log(itemname)
+        navigate("/home/community/chat", { state: { "chatName": itemname }});
+    }
 
     return (
         <div className='px-2'>
@@ -49,13 +56,13 @@ const Community = () => {
                 {data.map((item, i) => (
                     <>
                         {/* chats  */}
-                        <div key={i} className="chat p-3 bg-gray-400 rounded-lg flex items-center justify-between cursor-pointer">
+                        <div key={item.name} className="chat p-3 bg-gray-400 rounded-lg flex items-center justify-between cursor-pointer" onClick={()=>showChat(item.name)}>
                             <div className='flex items-center justify-start'>
 
                                 {/* image  */}
                                 <div className="image h-6 flex items-center justify-center p-2 rounded">
                                     <img
-                                        className='h-12 cover border-2 rounded-full border-customBorder p-1'
+                                        className='h-10 md:h-12 w-10 md:w-12 rounded-full border-2 border-customBorder p-1'
                                         src="../comp.webp" alt=""
                                     />
                                 </div>
@@ -78,7 +85,7 @@ const Community = () => {
                                         online
                                     </div>
                                 ) : (
-                                    <div className='font-bold mb-3'>02:14 PM</div>
+                                    <div className='font-bold mb-3'>02:14</div>
                                 )}
 
                                 {/* check that is there unseen message */}
