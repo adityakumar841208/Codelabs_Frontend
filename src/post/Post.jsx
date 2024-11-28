@@ -5,31 +5,40 @@ import ShareIcon from '@mui/icons-material/Share';
 
 const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares, reposts, postDate }) => {
     return (
-        <div className="max-w-full mx-auto bg-slate-400 rounded-lg overflow-hidden border border-customBorder mb-6 relative">
+        <div className="w-full mx-auto rounded-lg overflow-hidden shadow-md border mb-6">
             {/* Header */}
-            <div className="flex items-center p-2">
-                <img
-                    src="./comp.webp"
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full mr-4 object-contain"
-                />
-                <div>
-                    <h2 className="font-semibold">{username}</h2>
-                    <p className="text-sm ">{jobTitle}</p>
-                    <p className="text-xs ">{postDate}</p>
+            <div className="flex justify-between items-center">
+                <div className="flex items-center p-2">
+                    <img
+                        src="./coder2.jpg"
+                        alt="Profile"
+                        className="w-12 h-12 rounded-full mr-2 object-contain"
+                    />
+                    <div>
+                        <h2 className="font-semibold">{username}</h2>
+                        <p className="text-sm ">{jobTitle}</p>
+                        <p className="text-xs ">{postDate}</p>
+                    </div>
+                </div>
+                <div className="bg-blue-700 text-white rounded-lg px-3 py-1 cursor-pointer mr-6">
+                    Follow
                 </div>
             </div>
 
             {/* Post Content */}
-            <div className="p-2">
-                <p className=" mb-2 h-10">{postText}</p>
+            <div>
+                <p className="p-2">{postText}</p>
                 {imageUrl && (
-                    <img src={imageUrl} alt="Post" className="w-60 rounded-md object-cover border m-auto" />
+                    <img
+                        src={imageUrl}
+                        alt="Post"
+                        className="w-full object-cover"
+                    />
                 )}
             </div>
 
             {/* Footer (likes, comments, etc.) */}
-            <div className="px-4 py-2 border-t border-gray-300 flex justify-between text-sm relative">
+            <div className="px-4 py-2 border-t border-gray-300 flex justify-between text-sm">
                 <div className="flex items-center space-x-1">
                     <button className="flex items-center">
                         <FavoriteBorderIcon />
@@ -46,7 +55,7 @@ const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares,
                         <span className="ml-1">{reposts}</span>
                     </button>
                     <button className="flex items-center">
-                        <ShareIcon /> 
+                        <ShareIcon />
                         <span className="ml-1">{shares}</span>
                     </button>
                 </div>

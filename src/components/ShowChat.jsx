@@ -65,7 +65,7 @@ const ShowChat = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-grow flex flex-col justify-end overflow-auto p-4 mt-16">
+      <div className="flex-grow flex flex-col justify-end overflow-auto p-2 mt-16">
         {chatMessages.map((chat) => (
           <div
             key={chat.id}
@@ -76,7 +76,7 @@ const ShowChat = () => {
             <div
               className={`${
                 chat.sender === 'user' ? 'bg-primary text-white' : 'bg-slate-400 text-black'
-              } rounded-lg p-3 max-w-xs shadow-md`}
+              } rounded-lg p-2 max-w-xs shadow-md`}
             >
               <p>{chat.message}</p>
               <span className="text-xs text-gray-800 block mt-1 text-right">
@@ -89,7 +89,7 @@ const ShowChat = () => {
       </div>
 
       {/* Input Area */}
-      <div className="bottom-0 left-0 bg-slate-400 border-t p-4 flex gap-2">
+      <div className="bottom-0 left-0 m-2 bg-gray-400 rounded-lg border-t p-4 flex gap-2">
         <input
           type="text"
           placeholder="Type a message..."

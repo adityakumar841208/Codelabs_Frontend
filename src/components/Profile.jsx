@@ -1,7 +1,7 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import EditIcon from '@mui/icons-material/Edit';
-import { Button, Modal, Box } from '@mui/material';
-
+import { Button, Modal, Box, TextField } from '@mui/material';
+import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 
 const Profile = () => {
@@ -11,6 +11,10 @@ const Profile = () => {
 
     const handleEdit = () => setOpen(true);
     const handleCloseEdit = () => setOpen(false);
+
+    const handleSubmit = () => {
+        console.log('Submit');
+    }
 
     // box style 
     const style = {
@@ -23,12 +27,12 @@ const Profile = () => {
         p: 4,
         borderRadius: '8px',
     };
-    
+
 
     return (
         <div className="text-black min-h-screen p-2">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4 px-2">
+            <div className="flex items-center justify-between mb-2 px-2">
                 <div>
                     <h1 className="text-xl font-semibold">{profile.username}</h1>
                 </div>
@@ -38,21 +42,57 @@ const Profile = () => {
                     <Modal
                         open={open}
                         onClose={handleCloseEdit}
-                        aria-labelledby="parent-modal-title"
-                        aria-describedby="parent-modal-description"
+                        aria-labelledby="edit-modal-title"
+                        aria-describedby="edit-modal-description"
                     >
                         <Box sx={{ ...style, width: 400 }}>
-                            <h2 id="parent-modal-title" className="font-bold text-2xl">Edit</h2>
-                            <p id="parent-modal-description">
-                                Edit Your Details
-                            </p>
+                            <h2 id="edit-modal-title" className="font-bold text-2xl mb-4">
+                                Edit Profile
+                            </h2>
+                            <form className="space-y-4">
+                                <TextField
+                                    fullWidth
+                                    label="Name"
+                                    name="name"
+                                    value={profile.name}
+                                // onChange={handleChange}
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="Bio"
+                                    name="bio"
+                                    value={profile.bio}
+                                // onChange={handleChange}
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="Description"
+                                    name="desc"
+                                    value={profile.desc}
+                                // onChange={handleChange}
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="GitHub Link"
+                                    name="githubLink"
+                                    value={profile.githubLink}
+                                // onChange={handleChange}
+                                />
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    sx={{ background: "rgb(24 118 45)", color: "white" }}
+                                    onClick={handleSubmit}
+                                >
+                                    Submit
+                                </Button>
+                            </form>
                         </Box>
                     </Modal>
                 </div>
-
             </div>
 
-            <hr className="m-3 border-customBorder"></hr>
+            <hr className="m-2 border-customBorder"></hr>
 
             {/* Profile Info */}
             <div className="flex items-center space-x-5">
@@ -91,13 +131,13 @@ const Profile = () => {
                 <p className="text-sm">
                     {profile.desc}
                 </p>
-                <a
-                    href={profile.githubLink}
+                <Link
+                    to="#"
                     className="block text-primary mt-2 hover:underline"
                 >
                     https://github.com/adityakumar841208
-                </a>
-                <button className="mt-2 px-4 py-2 bg-primary rounded-full text-black hover:bg-primaryHover" onClick={profile.resumeLink}>
+                </Link>
+                <button className="mt-2 px-4 py-2 bg-primary rounded-full text-black hover:bg-primaryHover">
                     Download Resume / CV
                 </button>
             </div>
@@ -106,9 +146,9 @@ const Profile = () => {
             <div className="mt-8">
                 <h3 className="text-lg font-semibold">Skills</h3>
                 <div className="flex flex-wrap mt-2">
-                    {profile.skills.map((skill) => (
+                    {profile.skills.map((skill, index) => (
                         <span
-                            key={skill}
+                            key={index}
                             className="bg-slate-700 text-gray-300 text-sm px-3 py-1 rounded-full m-1"
                         >
                             {skill}
@@ -127,21 +167,19 @@ const Profile = () => {
                 </div>
                 <div className="mt-4 space-y-4">
                     {profile.ongoingProjects.map((item) => (
-                        <>
-                            <div className="flex items-center space-x-4 bg-slate-400 p-4 rounded-md" key={item.name}>
-                                <img
-                                    src={item.image}
-                                    alt="CodeLabs"
-                                    className="w-12 h-12 rounded-md"
-                                />
-                                <div>
-                                    <h4 className="font-semibold">{item.name}</h4>
-                                    <p className="text-sm text-black">
-                                        {item.description}
-                                    </p>
-                                </div>
+                        <div className="flex items-center space-x-4 bg-slate-400 p-4 rounded-md" key={item.name}>
+                            <img
+                                src={item.image}
+                                alt="CodeLabs"
+                                className="w-12 h-12 rounded-md"
+                            />
+                            <div>
+                                <h4 className="font-semibold">{item.name}</h4>
+                                <p className="text-sm text-black">
+                                    {item.description}
+                                </p>
                             </div>
-                        </>
+                        </div>
                     ))
                     }
                 </div>

@@ -5,8 +5,8 @@ const Announcements = () => {
     return (
         <>
             <div></div>
-            <div className='fixed border-customBorder border-l-2 min-h-screen overflow-y-auto bg-slate-200'>
-                <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', color: 'black' }}>
+            <div className='sticky top-16 shadow-xl overflow-y-auto rounded-xl bg-gradient-to-tr from-white via-pink-100 to-slate-200 m-2'>
+                <Typography variant="h6" sx={{ mb: 2,mt:2, textAlign: 'center', color: 'black' }}>
                     Announcements & Updates
                 </Typography>
                 <List>

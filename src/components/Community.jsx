@@ -10,39 +10,48 @@ const Community = () => {
     const [isOnline, setIsOnline] = useState(true);
     const [isUnseen, setIsUnseen] = useState(true);
     const data = [
-        { name: 'User 1', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya"},
+        { name: 'User 1', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya" },
         { name: 'User 2', isOnline: false, isUnseen: true, recentmessage: "hello this is aditya" },
         { name: 'User 3', isOnline: true, isUnseen: true, recentmessage: "hello this is aditya" },
         { name: 'User 4', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
         { name: 'User 5', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User ', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User 6', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User 7', isOnline: false, isUnseen: true, recentmessage: "hello this is aditya" },
+        { name: 'User 8', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User 9', isOnline: true, isUnseen: false, recentmessage: "hello this is aditya" },
+        { name: 'User 10', isOnline: false, isUnseen: false, recentmessage: "hello this is aditya" },
     ]
 
     const showChat = (itemname) => {
         console.log(itemname)
-        navigate("/home/community/chat", { state: { "chatName": itemname }});
+        navigate("/home/community/chat", { state: { "chatName": itemname } });
     }
 
     return (
-        <div className='px-2'>
-            <div className="flex justify-around items-center">
-                <div className='w-full flex center text-blue-950 font-extrabold text-2xl my-3 px-6'>
-                    Chats
-                </div>
-                <div className="lefticon flex justify-between items-center gap-10">
-                    <div className='rounded-md cursor-pointer'>
-                        <AddBoxIcon sx={{ fontSize: "30px" }} />
-                    </div>
-                    <div className='rounded-md cursor-pointer'>
-                        <SearchIcon sx={{ fontSize: "30px" }} />
-                    </div>
-                    <div className='rounded-md cursor-pointer'>
-                        <MoreVertIcon sx={{ fontSize: "30px" }} />
-                    </div>
-                </div>
-            </div>
+        <div className='px-2 mb-2'>
 
-            {/* divider  */}
-            <hr className='border-customBorder my-2'></hr>
+            <div className='sticky top-16 z-3 bg-white'>
+                <div className="flex justify-around items-center">
+                    <div className='w-full flex center text-blue-950 font-extrabold text-2xl my-3 px-6'>
+                        Chats
+                    </div>
+                    <div className="lefticon flex justify-between items-center gap-10">
+                        <div className='rounded-md cursor-pointer'>
+                            <AddBoxIcon sx={{ fontSize: "30px" }} />
+                        </div>
+                        <div className='rounded-md cursor-pointer'>
+                            <SearchIcon sx={{ fontSize: "30px" }} />
+                        </div>
+                        <div className='rounded-md cursor-pointer'>
+                            <MoreVertIcon sx={{ fontSize: "30px" }} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* divider  */}
+                <hr className='border my-2 mt-18'></hr>
+            </div>
 
             {/* tags  */}
             <div className="tags flex items-center justify-start m-2 gap-4 text-white">
@@ -56,7 +65,7 @@ const Community = () => {
                 {data.map((item, i) => (
                     <>
                         {/* chats  */}
-                        <div key={item.name} className="chat p-3 bg-gray-400 rounded-lg flex items-center justify-between cursor-pointer" onClick={()=>showChat(item.name)}>
+                        <div key={item.name} className="chat p-3 bg-gray-200 rounded-lg flex items-center justify-between cursor-pointer" onClick={() => showChat(item.name)}>
                             <div className='flex items-center justify-start'>
 
                                 {/* image  */}

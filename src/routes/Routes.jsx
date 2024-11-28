@@ -13,6 +13,7 @@ const ServicesPage = lazy(() => import('../components/Services'));
 const Profile = lazy(() => import('../components/Profile'));
 const Community = lazy(() => import('../components/Community'));
 const ShowChat = lazy(() => import('../components/ShowChat'));
+const Courses = lazy(() => import('../components/Courses'));
 
 
 
@@ -25,9 +26,12 @@ function AppRoutes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />}>
           <Route path="profile" element={<Profile />} />
+          <Route path="courses" element={<Courses />} />
+
           <Route path="community" element={<Community />}>
             <Route path="chat" element={<ShowChat />} />
           </Route>
+          
           <Route path="help" element={<Help />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="services" element={<ServicesPage />} />

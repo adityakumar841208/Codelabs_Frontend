@@ -5,6 +5,7 @@ import Navbar from './utilitycomponents/Navbar';
 import Footer from './utilitycomponents/Footer';
 import { ThemeProvider } from '@emotion/react';
 import Theme from './theme/Theme';
+import Navbar2 from './utilitycomponents/Navbar2';
 
 
 function App() {
@@ -23,7 +24,7 @@ function AppContent() {
 
   return (
     <>
-      <Navbar />
+      {(!location.pathname.startsWith('/home')) ? <Navbar /> : <Navbar2 />}
       <AppRoutes />
       {(!location.pathname.startsWith('/home')) && <Footer />}
     </>

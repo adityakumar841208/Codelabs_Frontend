@@ -31,12 +31,12 @@ const initialState = {
             image: "../comp.webp",
         },
         {
-            name: "Collage Management",
+            name: "Collage Management1",
             description: "A system for managing college operations.",
             image: "../comp.webp",
         },
         {
-            name: "Collage Management",
+            name: "Collage Management2",
             description: "A system for managing college operations.",
             image: "../comp.webp",
         },

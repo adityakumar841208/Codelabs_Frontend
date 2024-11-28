@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
+import { Link, useNavigate } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button, IconButton, Menu, MenuItem } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-const Navbar = () => {
+const Navbar2 = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -18,7 +19,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='h-20 w-full flex justify-around gap-x-96 items-center fixed top-0 z-10 px-4 backdrop-blur-sm'>
+            <div className='h-16 w-full bg-white flex justify-between gap-x-96 items-center fixed top-0 z-10 px-8 backdrop-blur-sm'>
                 {/* Logo */}
                 <div className="logo text-2xl font-bold text-black">
                     <Link to='/' className='text-shadow-deep'>
@@ -26,6 +27,10 @@ const Navbar = () => {
                     </Link>
                 </div>
 
+                {/* date  */}
+                <div className='w-80 bg-gray-100 py-2 px-4 rounded-md text-shadow-deep shadow-lg'>
+                    Monday 25 October
+                </div>
                 {/* Search Bar
                 <div className='flex items-center justify-center rounded-lg border-customBorder overflow-hidden'>
                     <input
@@ -34,33 +39,31 @@ const Navbar = () => {
                         className='h-10 w-32 sm:w-64 px-4 py-2 rounded-l-md focus:outline-none  text-black'
                     />
                     <div className="bg-primary p-2 rounded-r-md cursor-pointer hover:bg-primaryHover h-10 text-black">
-                        <SearchIcon />
+                    <SearchIcon />
                     </div>
-                </div> */}
-
-                {/* Links and Notifications on larger screens */}
-                <div className="hidden sm:flex items-center text-lg gap-4 text-black">
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>About Us</Link>
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Contact</Link>
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Support</Link>
-                    <Link className='bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/signup'>Signup</Link>
-                    <Link className='bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Login</Link>
-                    {/* <Button variant="contained" className='hover:bg-primaryHover text-black' sx={{ color: 'white' }}>
-                        AI Chat
-                    </Button>
-                    <div className="flex items-center justify-center p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12 cursor-pointer">
-                        <NotificationsIcon className="text-black" fontSize="medium" />
                     </div> */}
+
+                <div className='flex items-center justify-center'>
+                    <li
+                        className={`flex rounded-xl items-center shadow-inner shadow-gray-500/50 space-x-3 px-3 py-1 cursor-pointer bg-slate-100`}
+                        onClick={() => navigate('/home/profile')}
+                        style={{
+                            boxShadow: 'inset 0 -4px 6px rgba(0, 0, 0, 0.2)',
+                        }}
+                    >
+                        <AccountCircleIcon className="text-3xl border border-primary rounded-full" fontSize="large" />
+                        <span>UserName</span>
+                    </li>
+
+                    {/* Links and Notifications on larger screens */}
+                    <div className="hidden sm:flex items-center text-lg gap-4 text-black">
+                        {/* <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>About Us</Link> */}
+                        <div className="flex items-center justify-center p-2 bg-blue-700 rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12 cursor-pointer">
+                            <NotificationsIcon className="text-white" fontSize="medium" />
+                        </div>
+                    </div>
                 </div>
 
-                {/* <div className="flex items-center justify-between gap-6 text-lg">
-                    <button className='py-1 px-4 hover:bg-slate-200 rounded-xl text-shadow-deep'>
-                        Login
-                    </button>
-                    <button className='py-1 px-4 hover:bg-slate-200 rounded-xl text-shadow-deep'>
-                        Sign Up
-                    </button>
-                </div> */}
 
                 {/* Hamburger Menu for smaller screens */}
                 <div className="sm:hidden flex items-center">
@@ -123,9 +126,9 @@ const Navbar = () => {
                     </Menu>
                 </div>
             </div>
-            <div className='mt-20'></div>
+            <div className='mt-16'></div>
         </>
     );
 };
 
-export default Navbar;
+export default Navbar2;
