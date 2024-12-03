@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import ShareIcon from '@mui/icons-material/Share';
 
 const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares, reposts, postDate }) => {
+    const [follow, setFollow] = useState(false)
     return (
         <div className="w-full mx-auto rounded-lg overflow-hidden shadow-md border mb-6">
             {/* Header */}
@@ -20,8 +21,8 @@ const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares,
                         <p className="text-xs ">{postDate}</p>
                     </div>
                 </div>
-                <div className="bg-blue-700 text-white rounded-lg px-3 py-1 cursor-pointer mr-6">
-                    Follow
+                <div className="bg-blue-700 text-white rounded-lg px-3 py-1 cursor-pointer mr-6" onClick={()=>setFollow(!follow)}>
+                    {follow ? 'Followed':'Follow'}
                 </div>
             </div>
 

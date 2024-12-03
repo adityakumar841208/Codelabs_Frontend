@@ -14,6 +14,9 @@ const Profile = lazy(() => import('../components/Profile'));
 const Community = lazy(() => import('../components/Community'));
 const ShowChat = lazy(() => import('../components/ShowChat'));
 const Courses = lazy(() => import('../components/Courses'));
+const ExploreChats = lazy(() => import('../components/ExploreChats'));
+const ChatBot = lazy(() => import('../components/ChatBot'));
+
 
 
 
@@ -30,6 +33,8 @@ function AppRoutes() {
 
           <Route path="community" element={<Community />}>
             <Route path="chat" element={<ShowChat />} />
+            <Route path="chatbot" element={<ChatBot />} />
+            <Route path="explore-chats" element={<ExploreChats />} />
           </Route>
           
           <Route path="help" element={<Help />} />

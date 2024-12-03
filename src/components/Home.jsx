@@ -11,7 +11,7 @@ import Profile from './Profile';
 import Community from './Community';
 import ShowChat from './ShowChat';
 import Courses from './Courses';
-
+import ChatBot from './ChatBot';
 
 const Home = () => {
   const location = useLocation();
@@ -33,8 +33,11 @@ const Home = () => {
         return <Community />;
       case '/home/community/chat':
         return <ShowChat />;
+      case '/home/community/chatbot':
+        return <ChatBot />;
       case '/home/courses':
         return <Courses />;
+
       default:
         return (
           <div className="flex items-center justify-center h-full">
@@ -48,22 +51,28 @@ const Home = () => {
 
   return (
     <>
-      <div className="grid grid-cols-12 min-h-screen">
-        {/* Navigation Section */}
-        <div className="col-span-2 hidden md:block min-h-screen bg-slate-700">
-          <Navigation />
-        </div>
+      {!isHomeRoute ? (
+        <div className="grid grid-cols-12 min-h-screen">
+          {/* Navigation Section */}
+          <div className="col-span-2 hidden md:block min-h-screen bg-slate-700">
+            <Navigation />
+          </div>
 
-        {/* Content Section */}
-        <div className="col-span-full md:col-span-7 ">
+          {/* Content Section */}
+          <div className="col-span-12 md:col-span-7">
+            {renderContent()}
+          </div>
+
+          {/* Announcements Section */}
+          <div className="hidden md:block md:col-span-3 w-full lg:w-4 min-h-screen bg-gray-100">
+            <Announcements />
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-start justify-center min-h-screen">
           {renderContent()}
         </div>
-
-        {/* Announcements Section */}
-        <div className="col-span-12 md:col-span-3 hidden lg:block min-h-screen">
-          <Announcements />
-        </div>
-      </div>
+      )}
 
       {/* Conditionally Render Footer */}
       {!isHomeRoute && <Footer />}

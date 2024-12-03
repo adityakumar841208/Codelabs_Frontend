@@ -33,7 +33,7 @@ const Courses = () => {
           <Button
             variant="contained"
             size="large"
-            className="hover:bg-primaryHover"
+            className="hover:bg-blue-800 cursor-pointer"
           >
             Get Started
           </Button>
@@ -53,14 +53,14 @@ const Courses = () => {
             key={course.id}
             className="bg-gray-800 text-white rounded-lg shadow-lg p-4 flex flex-col"
           >
-            <div className="bg-gray-700 h-40 cover flex items-center justify-center rounded-lg mb-4">
-              <img src="../comp.webp" alt="" className='cover h-36' />
+            <div className="bg-gray-700 h-full cover flex items-center justify-center rounded-lg mb-4">
+              <img src="../web3.webp" alt="" className='cover h-full' />
             </div>
             <h3 className="text-xl font-semibold">{course.title}</h3>
             <p className="text-gray-400 text-sm mt-2">{course.description}</p>
             <Button
               variant="contained"
-              className="mt-auto hover:bg-primaryHover"
+              className="mt-auto hover:bg-blue-800"
               sx={{
                 color: 'white',
                 marginTop: '1rem',

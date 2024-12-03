@@ -5,8 +5,7 @@ import PostOption from '../post/PostOption';
 
 const Content = () => {
   return (
-    <div className='ml-2'>
-      <div></div>
+    <div className='ml-2 bg-none'>
       <PostOption />
       <hr className='mx-2 my-1'></hr>
       <div className='h-full m-2 rounded-3xl'>

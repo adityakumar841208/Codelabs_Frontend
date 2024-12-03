@@ -47,7 +47,7 @@ const FeedbackPage = () => {
     };
 
     return (
-        <div className='grid grid-cols-12 min-h-screen'>
+        <div className='grid grid-cols-12 min-h-screen w-full -mt-6'>
             <div className="flex items-center justify-center min-h-screen text-black col-span-12">
                 <div className="bg-slate-400 p-8 rounded-lg shadow-lg w-full max-w-lg">
                     <h2 className="text-2xl font-bold text-center mb-6 text-primaryHover">Feedback</h2>

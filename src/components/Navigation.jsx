@@ -1,6 +1,13 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import ExploreIcon from '@mui/icons-material/Explore';
+import SchoolIcon from '@mui/icons-material/School';
+import PeopleIcon from '@mui/icons-material/People';
+import BuildIcon from '@mui/icons-material/Build';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -10,76 +17,57 @@ const Navigation = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="sticky top-2 bg-none rounded-xl p-2 overflow-y-auto text-black">
-      <ul className="space-y-2">
+    <div className="sticky w-4/5 md:w-full m-auto top-0 p-4 overflow-y-auto bg-gray-800 text-white min-h-screen">
+      {/* Logo and Tagline */}
+      <div className="text-center mb-6">
+        <h1 className="text-3xl md:text-3xl font-bold tracking-wide">
+          Code<span className="text-blue-600">Labs</span>
+        </h1>
+        <p className="text-xs md:text-sm mt-1 md:mt-2 italic text-gray-400">For the Devs, By the Devs</p>
+      </div>
+
+      {/* Navigation Links */}
+      <ul className="space-y-3">
+        
         {/* Search Bar */}
-        <div className="flex items-center shadow-md justify-center rounded-lg bg-gray-100 border border-gray-300 overflow-hidden">
+        {/* <div className="flex items-center shadow-md justify-center rounded-lg bg-gray-100 border border-gray-300 overflow-hidden text-black">
           <input
             type="text"
             placeholder="Search..."
-            className="h-10 w-full shadow-lg px-4 py-2 bg-transparent focus:outline-none text-black"
-            // style={{
-            //   boxShadow: 'inset 0 -4px 6px rgba(0, 0, 0, 0.2)',
-            // }}
+            className="h-8 md:h-10 w-full px-3 md:px-4 py-1 md:py-2 bg-transparent focus:outline-none text-sm md:text-base"
           />
-          <div className=" p-2 rounded-r-md cursor-pointer hover:bg-gray-50 h-10 text-black">
-            <SearchIcon />
+          <div className="p-2 flex items-center justify-center md:p-3 rounded-r-md cursor-pointer hover:bg-gray-50 h-8 md:h-10">
+            <SearchIcon fontSize="small" />
           </div>
-        </div>
+        </div> */}
 
-        {/* Navigation Links */}
+        {/* Links */}
+        {[
+          { path: '/home', icon: <ExploreIcon fontSize="small" />, label: 'Explore' },
+          { path: '/home/courses', icon: <SchoolIcon fontSize="small" />, label: 'Courses' },
+          { path: '/home/community', icon: <PeopleIcon fontSize="small" />, label: 'Community' },
+          { path: '/home/services', icon: <BuildIcon fontSize="small" />, label: 'Services' },
+          { path: '/home/feedback', icon: <FeedbackIcon fontSize="small" />, label: 'Feedback' },
+          { path: '/home/help', icon: <HelpOutlineIcon fontSize="small" />, label: 'Help' },
+        ].map((item) => (
+          <li
+            key={item.path}
+            className={`flex items-center gap-3 md:gap-4 px-3 md:px-4 py-1.5 md:py-2 rounded-xl cursor-pointer text-sm md:text-base ${
+              isActive(item.path) ? 'bg-blue-700 text-white' : 'hover:bg-gray-700'
+            }`}
+            onClick={() => navigate(item.path)}
+          >
+            {item.icon}
+            <span>{item.label}</span>
+          </li>
+        ))}
+
+        {/* Logout */}
         <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home')}
-        >
-          <span>Explore</span>
-        </li>
-        <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home/courses') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home/courses')}
-        >
-          <span>Courses</span>
-        </li>
-        <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home/community') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home/community')}
-        >
-          <span>Community</span>
-        </li>
-        <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home/services') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home/services')}
-        >
-          <span>Services</span>
-        </li>
-        <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home/feedback') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home/feedback')}
-        >
-          <span>Feedback</span>
-        </li>
-        <li
-          className={`px-4 py-2 shadow-sm rounded-xl cursor-pointer ${
-            isActive('/home/help') ? 'bg-blue-700 text-white' : 'bg-white hover:bg-gray-200'
-          }`}
-          onClick={() => navigate('/home/help')}
-        >
-          <span>Help</span>
-        </li>
-        <li
-          className="px-4 py-2 shadow-sm rounded-xl cursor-pointer text-red-600 bg-white hover:bg-red-600 hover:text-white transition duration-300 ease-in-out"
+          className="flex items-center gap-3 md:gap-4 px-3 md:px-4 py-1.5 md:py-2 rounded-xl cursor-pointer text-sm md:text-base text-red-600 bg-gray-800 hover:bg-red-600 hover:text-white transition duration-300 ease-in-out"
           onClick={() => navigate('/')}
         >
+          <ExitToAppIcon fontSize="small" />
           <span>Logout</span>
         </li>
       </ul>
