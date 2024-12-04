@@ -29,12 +29,15 @@ function AppContent() {
       {
         !location.pathname.startsWith('/home') ? (
           <>
+          {/* structure of the page for new users  */}
             {!location.pathname.startsWith('/home') ? <Navbar /> : <Navbar2 />}
             <AppRoutes />
             {!location.pathname.startsWith('/home') && <Footer />}
           </>
         ) : (
           <>
+
+            {/* sturcture of the home page  */}
             <div className="grid grid-cols-12 min-h-screen">
               {/* Navigation Bar */}
               <div className="hidden md:block md:col-span-3 lg:col-span-2 bg-gray-800 min-h-screen">

@@ -8,10 +8,10 @@ import FeedbackPage from './Feedback';
 import Footer from '../utilitycomponents/Footer';
 import { useLocation } from 'react-router-dom';
 import Profile from './Profile';
-import Community from './Community';
-import ShowChat from './ShowChat';
+import Community from '../community/Community';
+import ShowChat from '../community/ShowChat';
 import Courses from './Courses';
-import ChatBot from './ChatBot';
+import ChatBot from '../community/ChatBot';
 
 const Home = () => {
   const location = useLocation();

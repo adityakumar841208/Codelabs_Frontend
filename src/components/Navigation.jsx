@@ -14,7 +14,13 @@ const Navigation = () => {
   const location = useLocation();
 
   // Function to check if a route is active
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => {
+    if (path === '/home') {
+      return location.pathname === '/home';
+    }
+    return location.pathname.startsWith(path);
+  };
+
 
   return (
     <div className="sticky w-4/5 md:w-full m-auto top-0 p-4 overflow-y-auto bg-gray-800 text-white min-h-screen">
@@ -28,18 +34,6 @@ const Navigation = () => {
 
       {/* Navigation Links */}
       <ul className="space-y-3">
-        
-        {/* Search Bar */}
-        {/* <div className="flex items-center shadow-md justify-center rounded-lg bg-gray-100 border border-gray-300 overflow-hidden text-black">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="h-8 md:h-10 w-full px-3 md:px-4 py-1 md:py-2 bg-transparent focus:outline-none text-sm md:text-base"
-          />
-          <div className="p-2 flex items-center justify-center md:p-3 rounded-r-md cursor-pointer hover:bg-gray-50 h-8 md:h-10">
-            <SearchIcon fontSize="small" />
-          </div>
-        </div> */}
 
         {/* Links */}
         {[
@@ -52,9 +46,8 @@ const Navigation = () => {
         ].map((item) => (
           <li
             key={item.path}
-            className={`flex items-center gap-3 md:gap-4 px-3 md:px-4 py-1.5 md:py-2 rounded-xl cursor-pointer text-sm md:text-base ${
-              isActive(item.path) ? 'bg-blue-700 text-white' : 'hover:bg-gray-700'
-            }`}
+            className={`flex items-center gap-3 md:gap-4 px-3 md:px-4 py-1.5 md:py-2 rounded-xl cursor-pointer text-sm md:text-base ${isActive(item.path) ? 'bg-blue-700 text-white' : 'hover:bg-gray-700'
+              }`}
             onClick={() => navigate(item.path)}
           >
             {item.icon}

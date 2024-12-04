@@ -1,28 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Box, Typography } from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import { addMessage } from '../reduxSlices/ChatBotSlice'; // Ensure correct import of chatSlice
-import axios from 'axios';
 
-const ChatBot = () => {
+const ShowChat = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const chatEndRef = useRef(null);
-  const dispatch = useDispatch();
-  const [messageText, setMessageText] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
+  const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
 
-  const chatBot = useSelector((state) => state.chatbot[0]);
+  const state = location.state || {};
+  const chatData = useSelector((state) => state.chats);
+  const currentChat = chatData.find((chat) => chat.name === state.chatName) || {};
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [chatBot]);
+  }, [currentChat]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -37,51 +38,21 @@ const ChatBot = () => {
     setOpenModal(false);
   };
 
-  const handleSendMessage = async () => {
-    if (messageText.trim()) {
-      const userMessage = {
+  const handleSendMessage = () => {
+    if (message.trim()) {
+      const newMessage = {
         id: Date.now(),
         sentBy: 'me',
         timestamp: new Date().toISOString(),
-        message: messageText.trim(),
+        message,
       };
-      dispatch(addMessage({ message: userMessage }));
-      setMessageText('');
-  
-      const url = 'https://chatgpt-42.p.rapidapi.com/'; 
-      const options = {
-        method: 'GET', 
-        url: url,
-        headers: {
-          'x-rapidapi-key': '2bc6463482mshda856378a9d6b35p178a9ejsn9f1ee30cb80b',
-          'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-          'Content-Type': 'application/json',
-        },
-        params: { query: messageText.trim() },
-      };
-  
-      try {
-        const response = await axios.request(options);
-        console.log(response)
-        const result = response.data;
-  
-        const botMessage = {
-          id: Date.now() + 1,
-          sentBy: 'bot',
-          timestamp: new Date().toISOString(),
-          message: result.response || "No response from bot",  // Ensure fallback if no response
-        };
-  
-        dispatch(addMessage({ message: botMessage }));
-        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-      } catch (error) {
-        console.error('Error fetching bot response:', error);
-      }
+      dispatch({
+        type: 'chats/addMessage',
+        payload: { name: currentChat.name, message: newMessage },
+      });
+      setMessage('');
     }
   };
-  
-  
-  
 
   return (
     <div className="text-black min-h-screen flex flex-col px-2 mb-2 w-full">
@@ -97,11 +68,11 @@ const ChatBot = () => {
             </Button>
             <div className="flex justify-center items-center gap-3">
               <img
-                src={chatBot.imgSrc}
-                alt={chatBot.name || 'Chat'}
+                src={currentChat.imgSrc || '/coder.jpg'}
+                alt={currentChat.name || 'Chat'}
                 className="h-11 w-11 p-1 border border-gray-300 rounded-full"
               />
-              <h1 className="text-xl font-semibold">{chatBot.name || 'Chat'}</h1>
+              <h1 className="text-xl font-semibold">{currentChat.name || 'Chat'}</h1>
             </div>
           </div>
           <Button className="text-sm font-semibold hover:text-black bg:gray-200 rounded-lg">
@@ -113,24 +84,19 @@ const ChatBot = () => {
 
       {/* Chat Messages */}
       <div className="flex-grow flex flex-col justify-end overflow-auto p-2 mt-16">
-        {chatBot.messages.map((chat) => (
+        {currentChat.messages?.map((chat) => (
           <div
             key={chat.id}
             className={`flex ${chat.sentBy === 'me' ? 'justify-end' : 'justify-start'} mb-4`}
           >
             <div
               className={`${
-                chat.sentBy === 'me'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-slate-400 text-black'
+                chat.sentBy === 'me' ? 'bg-blue-500 text-white' : 'bg-slate-400 text-black'
               } rounded-lg p-2 max-w-xs shadow-md`}
             >
               <p>{chat.message}</p>
               <span className="text-xs text-gray-900 block mt-1 text-right">
-                {new Date(chat.timestamp).toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
+                {new Date(chat.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </span>
             </div>
           </div>
@@ -158,10 +124,15 @@ const ChatBot = () => {
         </Button>
         <input
           type="text"
-          value={messageText}
-          onChange={(e) => setMessageText(e.target.value)}
           placeholder="Type a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="flex-grow border rounded-md p-2 h-11 focus:outline-none bg-white text-sm"
+          onKeyDown={(e) =>{
+            if (e.key === 'Enter') {
+              handleSendMessage();
+            }
+          }}
         />
         <Button
           variant="contained"
@@ -204,12 +175,16 @@ const ChatBot = () => {
           <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
             Select a file to upload
           </Typography>
+
+          {/* File Input as a Square Box */}
           <div className="mb-2">
             <input
               type="file"
               id="file-input"
               onChange={handleFileChange}
-              style={{ display: 'none' }}
+              style={{
+                display: 'none',
+              }}
             />
             <label
               htmlFor="file-input"
@@ -222,6 +197,9 @@ const ChatBot = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                padding: '0 10px',
                 cursor: 'pointer',
                 border: '1px solid #ccc',
               }}
@@ -229,16 +207,16 @@ const ChatBot = () => {
               {selectedFile ? selectedFile.name : 'Choose a file'}
             </label>
           </div>
+
+          {/* Preview Section (If Available) */}
           {filePreview && (
             <div className="mb-2">
               <Typography variant="body2">Preview:</Typography>
-              <img
-                src={filePreview}
-                alt="File Preview"
-                className="w-full max-h-60 mt-2"
-              />
+              <img src={filePreview} alt="File Preview" className="w-full max-h-60 mt-2" />
             </div>
           )}
+
+          {/* Submit Button */}
           <Button
             variant="contained"
             sx={{ backgroundColor: '#3b82f6', color: 'white', width: '100%' }}
@@ -252,4 +230,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default ShowChat;

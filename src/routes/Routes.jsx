@@ -11,13 +11,11 @@ const Help = lazy(() => import('../components/Help'));
 const Feedback = lazy(() => import('../components/Feedback'));
 const ServicesPage = lazy(() => import('../components/Services'));
 const Profile = lazy(() => import('../components/Profile'));
-const Community = lazy(() => import('../components/Community'));
-const ShowChat = lazy(() => import('../components/ShowChat'));
+const Community = lazy(() => import('../community/Community'));
+const ShowChat = lazy(() => import('../community/ShowChat'));
 const Courses = lazy(() => import('../components/Courses'));
-const ExploreChats = lazy(() => import('../components/ExploreChats'));
-const ChatBot = lazy(() => import('../components/ChatBot'));
-
-
+const ExploreChats = lazy(() => import('../community/ExploreChats'));
+const ChatBot = lazy(() => import('../community/ChatBot'));
 
 
 function AppRoutes() {

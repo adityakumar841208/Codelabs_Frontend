@@ -6,7 +6,7 @@ const initialState = [
         isOnline: true,
         isUnseen: false, // Initial unseen status
         recentmessage: "I'm good, how about you?",
-        imgSrc: "/coder.jpg",
+        imgSrc: "/chatbot.jpg",
         messages: [
         ],
     },
