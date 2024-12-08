@@ -67,7 +67,7 @@ const ChatBot = () => {
   
       const config = {
         headers: {
-          'Authorization': 'Bearer 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', // Ensure it's 'Bearer <API_KEY>'
+         'Authorization': 'Bearer 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',
           'Content-Type': 'application/json',
         }
       };
@@ -244,7 +244,6 @@ const ChatBot = () => {
             <label
               htmlFor="file-input"
               style={{
-                display: 'block',
                 width: '100%',
                 height: '50px',
                 backgroundColor: '#f0f0f0',
