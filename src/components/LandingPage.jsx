@@ -1,4 +1,5 @@
 import React from "react";
+import { Marquee } from "uicomponent/Marquee";
 
 const LandingPage = () => {
     return (
@@ -67,9 +68,9 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            <div className="my-28 blackblock rounded-2xl bg-customDark text-white m-2 lg:mx-40 flex flex-col lg:flex-row shadow-xl">
+            <div className="my-24 blackblock rounded-2xl bg-customDark text-white m-2 lg:mx-40 flex flex-col lg:flex-row shadow-xl">
                 {/* Left Section */}
-                <div className="first w-full lg:w-1/2 p-6 lg:p-12 flex flex-col items-start justify-start">
+                <div className="first w-full lg:w-1/2 p-6 lg:p-12 flex flex-col items-start justify-start overflow-hidden">
                     <p className="text-yellow-400 font-bold mb-2">KEEP PUSHING YOUR LIMITS!</p>
                     <h1 className="text-3xl lg:text-4xl font-bold mb-4">
                         Features that you <span className="text-yellow-400">✌️ need.</span>
@@ -78,8 +79,26 @@ const LandingPage = () => {
                         Codelabs is a platform designed to be every coder's ultimate companion. It's a space where you can streamline your workflow, access everything you need in one place, and focus on what truly matters-building and innovating. Welcome to the future of coding, where possibilities are limitless.
                     </p>
 
-                    <div className="flex flex-wrap gap-4">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded-full shadow-md shadow-voilet-800 hover:shadow-lg transition-all">
+                    <div className="flex flex-wrap gap-4 mt-4">
+                        {/* Marquee component with passed buttons as children */}
+                        <Marquee className="my-custom-class" repeat={5}>
+                            <button className="px-4 py-2 bg-blue-500 text-white rounded-full shadow-md shadow-voilet-800 hover:shadow-lg transition-all">
+                                AI Assistance
+                            </button>
+                            <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
+                                Developers Community
+                            </button>
+                            <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
+                                Project Sharing
+                            </button>
+                            <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
+                                Courses
+                            </button>
+                            <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
+                                Quizzes
+                            </button>
+                        </Marquee>
+                        {/* <button className="px-4 py-2 bg-blue-500 text-white rounded-full shadow-md shadow-voilet-800 hover:shadow-lg transition-all">
                             AI Assistance
                         </button>
                         <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
@@ -93,7 +112,7 @@ const LandingPage = () => {
                         </button>
                         <button className="px-4 py-2 bg-gray-700 text-white rounded-full shadow-md hover:shadow-lg transition-all">
                             Quizzes
-                        </button>
+                        </button> */}
                     </div>
                 </div>
 
