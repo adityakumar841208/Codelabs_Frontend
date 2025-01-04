@@ -18,7 +18,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='h-20 w-full flex justify-around gap-x-96 items-center fixed top-0 z-10 px-4 backdrop-blur-sm'>
+            <div className='h-20 w-full flex justify-around gap-x-96 items-center fixed top-0 z-10 px-4 bg-white'>
                 {/* Logo */}
                 <div className="logo text-2xl font-bold text-black">
                     <Link to='/' className='text-shadow-deep'>

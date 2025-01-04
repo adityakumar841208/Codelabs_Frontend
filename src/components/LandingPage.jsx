@@ -1,5 +1,7 @@
 import React from "react";
 import { Marquee } from "uicomponent/Marquee";
+import MagicButton from "../uicomponent/Buttons";
+import HyperText from "uicomponent/HyperText";
 
 const LandingPage = () => {
     return (
@@ -21,7 +23,6 @@ const LandingPage = () => {
                     <h1 className="text-5xl font-extrabold leading-tight">
                         Welcome to{" "}
                         Code<span className="text-indigo-800">Labs</span>
-
                     </h1>
                     <p className="mt-4 text-lg text-center text-gray-800 px-56">
                         At CodeLabs, we believe in empowering aspiring developers and
@@ -32,13 +33,19 @@ const LandingPage = () => {
                     </p>
 
                     {/* Call-to-Action Button */}
-                    <button
-                        className="mt-8 px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
-                        onClick={() => alert("Welcome to CodeLabs!")}
-                    >
-                        Get Started Now
-                    </button>
-
+                    <div className="mt-6 text-xl w-full mx px-6 mx-auto" >
+                        <MagicButton
+                            shimmerColor={"#ffffff"}
+                            shimmerSize={"0.05em"}
+                            shimmerDuration={"3s"}
+                            borderRadius={"100px"}
+                            background={"rgba(0, 0, 0, 1)"}
+                            className="mx-auto"
+                            onClick={() => window.location.href = "/signup"}
+                        >
+                            Get Started
+                        </MagicButton>
+                    </div>
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center m-10 w-full">
