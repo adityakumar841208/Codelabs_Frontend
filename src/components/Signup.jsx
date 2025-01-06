@@ -71,7 +71,7 @@ const SignUp = () => {
 
   return (
     <div
-      className="flex border border-customDark border-spacing-2 flex-col m-20 rounded-xl overflow-hidden md:flex-row items-start justify-center h-vh bg-gray-100"
+      className="flex border border-customDark border-spacing-2 flex-col lg:mx-20 md:mx-20 m-4 rounded-xl overflow-hidden md:flex-row items-start justify-center h-vh bg-gray-100"
       style={{ boxShadow: "2px 2px 14px rgba(0, 0, 0, 0.3)" }}
     >
       {/* Left Section */}
@@ -181,7 +181,7 @@ const SignUp = () => {
                   size="small"
                   onChange={(e) => setPassword(e.target.value)}
                   InputProps={{
-                    endAdornment: (
+                    endAdornment: !password && (
                       <InputAdornment position="end">
                         <LockOutlinedIcon />
                       </InputAdornment>
@@ -255,7 +255,7 @@ const SignUp = () => {
 
               {/* Sign Up Link */}
               <p className="text-center text-sm text-gray-500 mt-6">
-                Already Logged In ?{" "}
+                Already Have An Account ?{" "}
                 <Link to="/login" className="text-blue-600 hover:underline">
                   Login
                 </Link>

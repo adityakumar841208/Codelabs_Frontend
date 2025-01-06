@@ -1,129 +1,126 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Button, IconButton, Menu, MenuItem } from '@mui/material';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
 
-    const handleMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
     };
 
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    };
+    // Close the menu if clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        if (isMenuOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
     return (
         <>
-            <div className='h-20 w-full flex justify-around gap-x-96 items-center fixed top-0 z-10 px-4 bg-white'>
+            <div className="h-20 w-full flex justify-between items-center px-4 md:px-10 lg:px-16 bg-white fixed top-0 z-10">
                 {/* Logo */}
-                <div className="logo text-2xl font-bold text-black">
-                    <Link to='/' className='text-shadow-deep'>
+                <div className="text-2xl font-bold text-black">
+                    <Link to="/" className="text-shadow-deep">
                         CodeLabs
                     </Link>
                 </div>
 
-                {/* Search Bar
-                <div className='flex items-center justify-center rounded-lg border-customBorder overflow-hidden'>
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className='h-10 w-32 sm:w-64 px-4 py-2 rounded-l-md focus:outline-none  text-black'
-                    />
-                    <div className="bg-primary p-2 rounded-r-md cursor-pointer hover:bg-primaryHover h-10 text-black">
-                        <SearchIcon />
-                    </div>
-                </div> */}
-
-                {/* Links and Notifications on larger screens */}
-                <div className="hidden sm:flex items-center text-lg gap-4 text-black">
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>About Us</Link>
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Contact</Link>
-                    <Link className='hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Support</Link>
-                    <Link className='bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/signup'>Signup</Link>
-                    <Link className='bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500' to='/login'>Login</Link>
-                    {/* <Button variant="contained" className='hover:bg-primaryHover text-black' sx={{ color: 'white' }}>
-                        AI Chat
-                    </Button>
-                    <div className="flex items-center justify-center p-2 bg-primary rounded-full hover:bg-primaryHover transition duration-300 ease-in-out ml-12 cursor-pointer">
-                        <NotificationsIcon className="text-black" fontSize="medium" />
-                    </div> */}
-                </div>
-
-                {/* <div className="flex items-center justify-between gap-6 text-lg">
-                    <button className='py-1 px-4 hover:bg-slate-200 rounded-xl text-shadow-deep'>
+                {/* Links for larger screens */}
+                <div className="hidden sm:flex items-center text-lg gap-6 text-black">
+                    <Link
+                        className="hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500"
+                        to="/about"
+                    >
+                        About Us
+                    </Link>
+                    <Link
+                        className="hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500"
+                        to="/login"
+                    >
+                        Contact
+                    </Link>
+                    <Link
+                        className="bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500"
+                        to="/signup"
+                    >
+                        Signup
+                    </Link>
+                    <Link
+                        className="bg-red-300 text-black hover:bg-red-400 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500"
+                        to="/login"
+                    >
                         Login
-                    </button>
-                    <button className='py-1 px-4 hover:bg-slate-200 rounded-xl text-shadow-deep'>
-                        Sign Up
-                    </button>
-                </div> */}
+                    </Link>
+                </div>
 
                 {/* Hamburger Menu for smaller screens */}
                 <div className="sm:hidden flex items-center">
-                    <IconButton onClick={handleMenuOpen} color="inherit">
-                        <MenuIcon className="text-black" />
-                    </IconButton>
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleMenuClose}
-                        PaperProps={{
-                            style: {
-                                width: '95%',
-                                maxWidth: '95%',
-                                backgroundColor: '#1f2937', // Dark mode background color
-                                color: 'white', // Text color in dark mode
-                            },
-                        }}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        <MenuItem
-                            onClick={handleMenuClose}
-                            component={Link}
-                            to="/signup"
-                            className="w-full text-center hover:bg-primaryHover"
-                        >
-                            Signup
-                        </MenuItem>
-                        <MenuItem
-                            onClick={handleMenuClose}
-                            component={Link}
-                            to="/signup"
-                            className="w-full text-center hover:bg-primaryHover"
-                        >
-                            Quiz
-                        </MenuItem>
-                        <MenuItem
-                            onClick={handleMenuClose}
-                            component={Link}
-                            to="/login"
-                            className="w-full text-center hover:bg-primaryHover"
-                        >
-                            About Us
-                        </MenuItem>
-                        <MenuItem
-                            onClick={handleMenuClose}
-                            className="w-full text-center hover:bg-primaryHover"
-                        >
-                            <Button variant="contained" className='hover:bg-primaryHover text-black' sx={{ color: 'white' }}>
-                                AI Chat
-                            </Button>
-                        </MenuItem>
-                    </Menu>
+                    <button onClick={toggleMenu} className="text-black">
+                        {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                    </button>
                 </div>
             </div>
-            <div className='mt-20'></div>
+            <div className="mt-20"></div>
+            {/* Full-Screen Mobile Menu */}
+            {isMenuOpen && (
+                <div
+                    ref={menuRef}
+                    className="fixed top-0 left-0 w-full h-auto p-5 bg-gray-800 text-white z-20 flex flex-col items-center justify-center"
+                >
+                    <button
+                        onClick={toggleMenu}
+                        className="absolute top-7 right-4 text-white"
+                    >
+                        <CloseIcon fontSize="small" />
+                    </button>
+                    <div className="flex flex-col items-center text-lg">
+                        <Link
+                            to="/signup"
+                            className="py-2 px-6 text-center hover:bg-primaryHover"
+                            onClick={toggleMenu}
+                        >
+                            Signup
+                        </Link>
+                        <Link
+                            to="/quiz"
+                            className="py-2 px-6 text-center hover:bg-primaryHover"
+                            onClick={toggleMenu}
+                        >
+                            Quiz
+                        </Link>
+                        <Link
+                            to="/about"
+                            className="py-2 px-6 text-center hover:bg-primaryHover"
+                            onClick={toggleMenu}
+                        >
+                            About Us
+                        </Link>
+                        <Link
+                            to="/ai-chat"
+                            className="py-2 px-6 text-center hover:bg-primaryHover"
+                            onClick={toggleMenu}
+                        >
+                            AI Chat
+                        </Link>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

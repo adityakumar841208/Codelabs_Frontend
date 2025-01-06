@@ -3,7 +3,7 @@ import { cn } from "../lib/utils";
 export function Marquee({
     className,
     reverse,
-    pauseOnHover = false,
+    pauseOnHover = true,
     children,
     vertical = false,
     repeat = 4,

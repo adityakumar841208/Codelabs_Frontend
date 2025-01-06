@@ -120,6 +120,29 @@ module.exports = {
             transform: "translate(calc(100cqw - 100%), 0)",
           },
         },
+
+        //for orbits
+        "orbit": {
+          "0%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg))",
+          },
+          "100%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg))",
+          },
+        },
+
+        //for shiny text
+        "shiny-text": {
+          "0%, 90%, 100%": {
+            "background-position": "calc(-100% - var(--shiny-width)) 0",
+          },
+          "30%, 60%": {
+            "background-position": "calc(100% + var(--shiny-width)) 0",
+          },
+        },
+
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -130,6 +153,12 @@ module.exports = {
         // button 
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+
+        //orbits
+        "orbit": "orbit calc(var(--duration)*1s) linear infinite",
+
+        //shiny text
+        "shiny-text": "shiny-text 8s infinite",
       },
     },
   },

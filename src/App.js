@@ -29,10 +29,16 @@ function AppContent() {
       {
         !location.pathname.startsWith('/home') ? (
           <>
-          {/* structure of the page for new users  */}
-            {!location.pathname.startsWith('/home') ? <Navbar /> : <Navbar2 />}
-            <AppRoutes />
-            {!location.pathname.startsWith('/home') && <Footer />}
+            {/* structure of the page for new users  */}
+
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <div className="flex-grow">
+                <AppRoutes />
+              </div>
+              <Footer />
+            </div>
+
           </>
         ) : (
           <>

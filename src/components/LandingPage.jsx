@@ -1,7 +1,8 @@
 import React from "react";
 import { Marquee } from "uicomponent/Marquee";
 import MagicButton from "../uicomponent/Buttons";
-import HyperText from "uicomponent/HyperText";
+import { Globe } from "uicomponent/Globe";
+// import HyperText from "uicomponent/HyperText";
 
 const LandingPage = () => {
     return (
@@ -16,15 +17,14 @@ const LandingPage = () => {
                     playsInline
                 ></video> */}
                 {/* Navbar Space */}
-                <div className="w-full h-20"></div>
 
                 {/* Content Section */}
-                <div className="relative z-10 text-center px-8 sm:px-16 mt-10 my-48">
-                    <h1 className="text-5xl font-extrabold leading-tight">
+                <div className="relative z-10 text-center px-4 sm:px-16 mt-10 my-24 sm:my-48">
+                    <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight">
                         Welcome to{" "}
-                        Code<span className="text-indigo-800">Labs</span>
+                        <span className="text-indigo-800">CodeLabs</span>
                     </h1>
-                    <p className="mt-4 text-lg text-center text-gray-800 px-56">
+                    <p className="mt-4 text-sm sm:text-lg font-bold text-center text-gray-800 px-4 sm:px-16 lg:px-56">
                         At CodeLabs, we believe in empowering aspiring developers and
                         experienced coders alike with the tools and resources they need to
                         succeed in the dynamic world of software development. Our platform
@@ -33,7 +33,7 @@ const LandingPage = () => {
                     </p>
 
                     {/* Call-to-Action Button */}
-                    <div className="mt-6 text-xl w-full mx px-6 mx-auto" >
+                    <div className="mt-6 text-base sm:text-xl w-full px-4 sm:px-6 mx-auto">
                         <MagicButton
                             shimmerColor={"#ffffff"}
                             shimmerSize={"0.05em"}
@@ -47,23 +47,28 @@ const LandingPage = () => {
                         </MagicButton>
                     </div>
                 </div>
+                <Globe />
             </div>
-            <div className="flex flex-col items-center justify-center m-10 w-full">
-                <img src="./coder2.jpg" alt="" className="h-72" />
-                <img src="./Dashboard_png.webp" alt="" className="w-2/3 -mt-32" />
+
+            <div className="flex flex-col items-center justify-center sm:m-10 w-full">
+                <img src="./coder2.jpg" alt="" className="h-48 sm:h-72" />
+                <img src="./Dashboard_png.webp" alt="" className="w-4/5 sm:w-2/3 -mt-20 sm:-mt-32" />
             </div>
-            <div className="flex flex-col items-center justify-center gap-3 m-10 px-36 w-full -mt-80 ">
-                <div className="py-1 text-blue-700 px-3 bg-gray-300 rounded-xl">codelabs.com</div>
-                <div className="bg-gray-800 shadow-xl flex flex-col p-4 h-80 w-2/3 rounded-xl gap-5">
+
+            <div className="flex flex-col items-center justify-center gap-3 sm:m-10 px-6 sm:px-36 w-full -mt-60 sm:-mt-80">
+                <div className="py-1 text-blue-700 px-2 sm:px-3 bg-gray-300 rounded-xl text-xs sm:text-base">
+                    codelabs.com
+                </div>
+                <div className="bg-gray-800 shadow-xl flex flex-col p-3 sm:p-4 h-60 sm:h-80 w-4/5 sm:w-2/3 rounded-xl gap-3 sm:gap-5">
                     {/* Terminal Header with Dots */}
-                    <div className="flex items-center space-x-2">
-                        <div className="dots bg-red-500 p-2 rounded-full"></div>
-                        <div className="dots bg-yellow-500 p-2 rounded-full"></div>
-                        <div className="dots bg-green-500 p-2 rounded-full"></div>
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                        <div className="dots bg-red-500 p-1 sm:p-2 rounded-full"></div>
+                        <div className="dots bg-yellow-500 p-1 sm:p-2 rounded-full"></div>
+                        <div className="dots bg-green-500 p-1 sm:p-2 rounded-full"></div>
                     </div>
 
                     {/* Terminal Content */}
-                    <div className="mt-4 flex flex-col text-sm text-green-400 font-mono whitespace-pre-line overflow-y-auto">
+                    <div className="mt-2 sm:mt-4 flex flex-col text-xs sm:text-sm text-green-400 font-mono whitespace-pre-line overflow-y-auto">
                         <span>
                             <span className="text-gray-400">~/projects/terminal&gt;</span> <span className="animate-blink">|</span>
                         </span>
@@ -74,6 +79,8 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+
+
 
             <div className="my-24 blackblock rounded-2xl bg-customDark text-white m-2 lg:mx-40 flex flex-col lg:flex-row shadow-xl">
                 {/* Left Section */}
