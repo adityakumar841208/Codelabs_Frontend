@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true); // For navbar visibility
     const menuRef = useRef(null);
+    const prevScrollY = useRef(0);
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -31,9 +33,36 @@ const Navbar = () => {
         };
     }, [isMenuOpen]);
 
+    // Handle scroll behavior
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > prevScrollY.current && currentScrollY > 50) {
+                // Scrolling down
+                setIsVisible(false);
+            } else {
+                // Scrolling up
+                setIsVisible(true);
+            }
+
+            prevScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <>
-            <div className="h-20 w-full flex justify-between items-center px-4 md:px-10 lg:px-16 bg-white fixed top-0 z-10">
+            <div
+                className={`h-20 w-full flex justify-between items-center px-4 md:px-10 lg:px-16 bg-white fixed top-0 z-10 transition-transform duration-300 ${
+                    isVisible ? "translate-y-0" : "-translate-y-full"
+                }`}
+            >
                 {/* Logo */}
                 <div className="text-2xl font-bold text-black">
                     <Link to="/" className="text-shadow-deep">
@@ -51,7 +80,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         className="hover:bg-slate-200 py-1 px-4 rounded-xl text-shadow-deep transition-all duration-500"
-                        to="/login"
+                        to="/contact"
                     >
                         Contact
                     </Link>

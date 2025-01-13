@@ -8,11 +8,16 @@ import { z } from "zod";
 import OrbitingCircles from "uicomponent/Orbiting";
 import AnimatedShinyText from "uicomponent/Shinytext";
 
-// Validation Schema using Zod
-const loginSchema = z.object({
+// Validation Schema of emailLogin using Zod
+const emailSchema = z.object({
   email: z.string().email("Invalid email address").optional(),
   password: z.string().min(6, "Password must be at least 6 characters long"),
-  mobile: z.string().min(10, "Mobile number must be 10 digits").optional(),
+});
+
+// Validation Schema of mobileLogin using Zod
+const mobileSchema = z.object({
+  password: z.string().min(6, "Password must be at least 6 characters long"),
+  mobile: z.string().min(10, "Mobile number must be 10 digits").max(10, "Mobile number must be 10 digits"),
 });
 
 const LoginPage = () => {
@@ -27,12 +32,13 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationResult = loginSchema.safeParse(formData);
+    const validationResult = isMobileLogin ? mobileSchema.safeParse(formData) : emailSchema.safeParse(formData);
 
     if (validationResult.success) {
       setErrors({ email: "", password: "", mobile: "" });
       navigate("/home"); // Redirect to home on successful login
     } else {
+      console.log('error:', validationResult.error)
       // Set error messages based on validation errors
       const newErrors = {
         email: validationResult.error.formErrors.fieldErrors.email?.[0] || "",
@@ -148,6 +154,20 @@ const LoginPage = () => {
                   </InputAdornment>
                 ),
               }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "gray",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "blue",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "blue",
+                  },
+                  boxShadow: "2px 4px 3px rgba(0, 0, 0, 0.1)",
+                },
+              }}
             />
 
 
@@ -161,17 +181,17 @@ const LoginPage = () => {
                 textTransform: "none",
                 boxShadow: "4px 8px 12px rgba(0, 0, 0, 0.3)",
               }}
-              onClick={() => navigate("/home")}
+              onClick={(e) => handleSubmit(e)}
             >
               Log in
             </Button>
           </form>
 
           {/* Divider */}
-          <div className="flex items-center justify-between mb-4 mt-7">
-            <hr className="w-full border-t border-gray-500" />
-            <span className="px-2 text-customBorder text-sm">OR</span>
-            <hr className="w-full border-t border-gray-500" />
+          <div className="flex items-center justify-between mb-2 mt-4">
+            <hr className="w-full border-t border-gray-500/50" />
+            <span className="px-2 text-gray-500 text-sm">OR</span>
+            <hr className="w-full border-t border-gray-500/50" />
           </div>
 
           {/* Toggle Login Method */}

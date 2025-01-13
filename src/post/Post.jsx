@@ -1,10 +1,20 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import ShareIcon from '@mui/icons-material/Share';
 
 const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares, reposts, postDate }) => {
-    const [follow, setFollow] = useState(false)
+    const [follow, setFollow] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false); // Track if the text is expanded
+
+    const handleFollowToggle = () => {
+        setFollow(!follow);
+    };
+
+    const handleTextToggle = () => {
+        setIsExpanded(!isExpanded); // Toggle expanded/collapsed text
+    };
+
     return (
         <div className="w-full mx-auto rounded-lg overflow-hidden shadow-md border mb-6">
             {/* Header */}
@@ -17,24 +27,46 @@ const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares,
                     />
                     <div>
                         <h2 className="font-semibold">{username}</h2>
-                        <p className="text-sm ">{jobTitle}</p>
-                        <p className="text-xs ">{postDate}</p>
+                        <p className="text-sm">{jobTitle}</p>
+                        <p className="text-xs">{postDate}</p>
                     </div>
                 </div>
-                <div className="bg-blue-700 text-white rounded-lg px-3 py-1 cursor-pointer mr-6" onClick={()=>setFollow(!follow)}>
-                    {follow ? 'Followed':'Follow'}
+                <div
+                    className="bg-blue-700 text-white rounded-lg px-3 py-1 cursor-pointer mr-6"
+                    onClick={handleFollowToggle}
+                >
+                    {follow ? 'Followed' : 'Follow'}
                 </div>
             </div>
 
             {/* Post Content */}
             <div>
-                <p className="p-2">{postText}</p>
+                <p className={`p-1 ${!isExpanded ? 'line-clamp-2' : ''} sm:${!isExpanded ? 'line-clamp-3' : ''}`}>
+                    {postText}
+                    {!isExpanded ? (
+                        <button
+                            className="text-blue-600 ml-2 inline"
+                            onClick={handleTextToggle}
+                        >
+                            More
+                        </button>
+                    ) : (
+                        <button
+                            className="text-blue-600 ml-2 inline"
+                            onClick={handleTextToggle}
+                        >
+                            Less
+                        </button>
+                    )}
+                </p>
                 {imageUrl && (
-                    <img
-                        src={imageUrl}
-                        alt="Post"
-                        className="w-full object-cover"
-                    />
+                    <div className="w-full">
+                        <img
+                            src={imageUrl}
+                            alt="Post"
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
                 )}
             </div>
 

@@ -14,8 +14,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px rgb(55 65 81) inset; /* Replace #374151 with your preferred color */
-  box-shadow: 0 0 0px 1000px rgb(55 65 81) inset;
-  -webkit-text-fill-color: #ffffff; /* Replace #ffffff with your preferred text color */
+  box-shadow: 0 0 0px 1000px rgb(209 213 219) inset;
+  -webkit-text-fill-color: #000000; /* Replace #ffffff with your preferred text color */
 }
 
 /* Customize the scrollbar width */
