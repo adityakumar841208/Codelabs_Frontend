@@ -1,10 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
 import ExploreIcon from '@mui/icons-material/Explore';
 import SchoolIcon from '@mui/icons-material/School';
 import PeopleIcon from '@mui/icons-material/People';
-import BuildIcon from '@mui/icons-material/Build';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -40,7 +38,7 @@ const Navigation = () => {
           { path: '/home', icon: <ExploreIcon fontSize="small" />, label: 'Explore' },
           { path: '/home/courses', icon: <SchoolIcon fontSize="small" />, label: 'Courses' },
           { path: '/home/community', icon: <PeopleIcon fontSize="small" />, label: 'Community' },
-          { path: '/home/services', icon: <BuildIcon fontSize="small" />, label: 'Services' },
+          // { path: '/home/services', icon: <BuildIcon fontSize="small" />, label: 'Services' },
           { path: '/home/feedback', icon: <FeedbackIcon fontSize="small" />, label: 'Feedback' },
           { path: '/home/help', icon: <HelpOutlineIcon fontSize="small" />, label: 'Help' },
         ].map((item) => (

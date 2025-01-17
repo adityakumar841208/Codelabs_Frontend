@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, Modal, Box, TextField } from '@mui/material';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import { addSkill } from "reduxSlices/ProfileSlice";
 
 const Profile = () => {
     const profile = useSelector((state) => state.profile);
+    const [skillModal, setSkillModal] = useState(false)
+    const [skill, setSkill] = useState('')
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
@@ -14,6 +17,12 @@ const Profile = () => {
 
     const handleSubmit = () => {
         console.log('Submit');
+    }
+
+    const handleSkillSubmit = () => {
+        dispatch(addSkill(skill))
+        setSkill('')
+        setSkillModal(false)
     }
 
     // box style 
@@ -155,9 +164,43 @@ const Profile = () => {
                         </span>
 
                     ))}
-                    <button className="bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm px-3 py-1 rounded-full m-1">Add +</button>
+                    <button className="bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm px-3 py-1 rounded-full m-1" onClick={() => setSkillModal(true)}>Add +</button>
                 </div>
             </div>
+
+            {
+                skillModal && (
+                    <Modal
+                        open={skillModal}
+                        onClose={() => setSkillModal(false)}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                    >
+                        <Box sx={{ ...style, width: 400 }}>
+                            <h2 id="simple-modal-title" className="font-bold text-2xl mb-4">
+                                Add Skills
+                            </h2>
+                            <form className="space-y-4">
+                                <TextField
+                                    fullWidth
+                                    label="Skill"
+                                    name="skill"
+                                    value={skill}
+                                    onChange={(e) => setSkill(e.target.value)}
+                                />
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    sx={{ background: "rgb(24 118 45)", color: "white" }}
+                                    onClick={handleSkillSubmit}
+                                >
+                                    Submit Skill
+                                </Button>
+                            </form>
+                        </Box>
+                    </Modal>
+                )
+            }
 
             {/* Ongoing Projects */}
             <div className="mt-8">

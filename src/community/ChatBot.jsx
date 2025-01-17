@@ -8,6 +8,8 @@ import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { addMessage } from '../reduxSlices/ChatBotSlice'; // Ensure correct import of chatSlice
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const ChatBot = () => {
   const navigate = useNavigate();
@@ -45,16 +47,16 @@ const ChatBot = () => {
         timestamp: new Date().toISOString(),
         message: messageText.trim(),
       };
-  
+
       // Dispatch user message
       dispatch(addMessage({ message: userMessage }));
-  
+
       // Clear the input field
       setMessageText('');
-  
+
       // Groq API details (Replace with your API key)
       const url = 'https://api.groq.com/openai/v1/chat/completions';  // Make sure this is correct
-  
+
       const data = {
         model: "llama3-8b-8192", // Specify the model to use
         messages: [
@@ -64,19 +66,19 @@ const ChatBot = () => {
           }
         ]
       };
-  
+
       const config = {
         headers: {
-         'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer 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',
           'Content-Type': 'application/json',
         }
       };
-  
+
       try {
         // Send POST request using the URL, data, and config
         const response = await axios.post(url, data, config);
         console.log(response);
-  
+
         // Ensure response is valid and process bot's message
         const botMessage = {
           id: Date.now() + 1,
@@ -84,15 +86,15 @@ const ChatBot = () => {
           timestamp: new Date().toISOString(),
           message: response.data.choices[0].message.content || "No response from bot", // Get message from choices array
         };
-  
+
         // Dispatch bot's message
         dispatch(addMessage({ message: botMessage }));
-  
+
         // Scroll to the end of the chat
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       } catch (error) {
         console.error('Error fetching bot response:', error);
-  
+
         // Handle error gracefully by adding an error message to the chat
         const errorMessage = {
           id: Date.now() + 2,
@@ -100,14 +102,14 @@ const ChatBot = () => {
           timestamp: new Date().toISOString(),
           message: "Sorry, I couldn't process your message. Please try again later.",
         };
-  
+
         dispatch(addMessage({ message: errorMessage }));
       }
     }
   };
-  
-  
-  
+
+
+
 
   return (
     <div className="text-black min-h-screen flex flex-col px-2 mb-2 w-full">
@@ -146,11 +148,40 @@ const ChatBot = () => {
           >
             <div
               className={`${chat.sentBy === 'me'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-slate-400 text-black'
-                } rounded-lg p-2 max-w-xs shadow-md`}
+                ? 'bg-blue-500 text-white'
+                : 'bg-slate-400 text-black'
+                } rounded-lg p-2 max-w-xs shadow-md break-words`}
+              style={{
+                wordWrap: 'break-word',
+                maxWidth: '90%', // Ensures proper wrapping
+              }}
             >
-              <p>{chat.message}</p>
+              {/* Transparent copy button */}
+              {/* <div
+                className="absolute left-0 flex items-center justify-center bottom-0 rounded-md cursor-pointer transition-opacity"
+              >
+                <Button
+                  className="text-white p-0 min-w-0"
+                  onClick={() => navigator.clipboard.writeText(chat.message)}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <ContentCopyIcon fontSize="small" sx={{color:'black'}} />
+                </Button>
+              </div> */}
+
+              {chat.sentBy === 'bot' ? (
+                // Render bot message with formatting logic
+                <ReactMarkdown>{chat.message}</ReactMarkdown>
+              ) : (
+                // Render user message as plain text
+                <p>{chat.message}</p>
+              )}
+
+              {/* Timestamp */}
               <span className="text-xs text-gray-900 block mt-1 text-right">
                 {new Date(chat.timestamp).toLocaleTimeString([], {
                   hour: '2-digit',

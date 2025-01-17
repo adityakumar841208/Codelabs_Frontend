@@ -143,6 +143,12 @@ module.exports = {
           },
         },
 
+        //for like animation
+        bounceLike: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
+        },
+
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -159,6 +165,9 @@ module.exports = {
 
         //shiny text
         "shiny-text": "shiny-text 8s infinite",
+
+        //for like animation
+        bounceLike: "bounceLike 0.4s ease-in-out",
       },
     },
   },

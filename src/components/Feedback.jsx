@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { z } from 'zod';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 // Validation schema for feedback form
 const feedbackSchema = z.object({
@@ -49,8 +49,8 @@ const FeedbackPage = () => {
     return (
         <div className='grid grid-cols-12 min-h-screen w-full -mt-6'>
             <div className="flex items-center justify-center min-h-screen text-black col-span-12">
-                <div className="bg-slate-400 p-8 rounded-lg shadow-lg w-full max-w-lg">
-                    <h2 className="text-2xl font-bold text-center mb-6 text-primaryHover">Feedback</h2>
+                <div className="bg-purple-100 p-8 rounded-lg shadow-lg w-full max-w-lg">
+                    <h2 className="text-2xl font-bold text-center mb-6 text-purple-500">Feedback</h2>
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -97,12 +97,18 @@ const FeedbackPage = () => {
                             {errors.message && <p className="text-red-500 text-sm">{errors.message[0]}</p>}
                         </div>
 
-                        <button
+                        <Button
                             type="submit"
-                            className="w-full bg-primary text-black py-3 rounded hover:bg-primaryHover transition"
+                            variant="contained"
+                            fullWidth
+                            className="bg-blue-600 text-white hover:bg-blue-700"
+                            sx={{
+                                textTransform: "none",
+                                boxShadow: "4px 8px 12px rgba(0, 0, 0, 0.3)",
+                            }}
                         >
-                            Submit Feedback
-                        </button>
+                            Submit
+                        </Button>
                     </form>
                 </div>
             </div>
