@@ -6,6 +6,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import QuizIcon from '@mui/icons-material/Quiz';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -35,10 +37,11 @@ const Navigation = () => {
 
         {/* Links */}
         {[
+          { path: '/home/profile', icon: <AccountCircleIcon fontSize="small" />, label: 'Profile' },
           { path: '/home', icon: <ExploreIcon fontSize="small" />, label: 'Explore' },
           { path: '/home/courses', icon: <SchoolIcon fontSize="small" />, label: 'Courses' },
           { path: '/home/community', icon: <PeopleIcon fontSize="small" />, label: 'Community' },
-          // { path: '/home/services', icon: <BuildIcon fontSize="small" />, label: 'Services' },
+          { path: '/home/quiz', icon: <QuizIcon fontSize="small" />, label: 'Quiz' },
           { path: '/home/feedback', icon: <FeedbackIcon fontSize="small" />, label: 'Feedback' },
           { path: '/home/help', icon: <HelpOutlineIcon fontSize="small" />, label: 'Help' },
         ].map((item) => (

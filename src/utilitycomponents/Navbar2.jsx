@@ -79,6 +79,20 @@ const Navbar2 = () => {
                         </IconButton>
                     </div>
                 </div>
+
+                {/* Notifications Icon with Badge */}
+                <div className="md:hidden flex items-center justify-center bg-blue-700 rounded-full hover:bg-blue-800 transition duration-300 ease-in-out cursor-pointer">
+                    <IconButton onClick={handleClick}>
+                        <Badge
+                            badgeContent={unreadNotifications}  // Show the number of unread notifications
+                            color="error"
+                            max={99} // Limit to a maximum of 99 notifications
+                        >
+                            <NotificationsIcon className="text-white" fontSize="small" />
+                        </Badge>
+                    </IconButton>
+                </div>
+
             </div>
 
             {/* Sliding Menu */}
@@ -94,7 +108,7 @@ const Navbar2 = () => {
                 </div>
 
                 {/* Embed Navigation Component */}
-                <div className="px-4">
+                <div className="px-4" onClick={setIsMenuOpen.bind(this, false)}>
                     <Navigation /> {/* Render the Navigation component here */}
                 </div>
 
@@ -129,7 +143,7 @@ const Navbar2 = () => {
                 <div className="p-4 w-60 rounded-3xl">
                     <h2 className="font-bold text-lg">Notifications</h2>
                     <ul>
-                        {[...Array(5)].map((_, index) => (
+                        {[...Array(3)].map((_, index) => (
                             <li key={index} className="py-2">
                                 <p>Notification {index + 1}</p>
                             </li>

@@ -12,6 +12,8 @@ import Community from '../community/Community';
 import ShowChat from '../community/ShowChat';
 import Courses from './Courses';
 import ChatBot from '../community/ChatBot';
+import Quiz from './Quiz';
+import QuizLandingPage from 'quiz/QuizLandingPage';
 
 const Home = () => {
   const location = useLocation();
@@ -37,6 +39,10 @@ const Home = () => {
         return <ChatBot />;
       case '/home/courses':
         return <Courses />;
+      case '/home/quiz':
+        return <Quiz />;
+      case '/home/quiz/start':
+        return <QuizLandingPage />;
 
       default:
         return (

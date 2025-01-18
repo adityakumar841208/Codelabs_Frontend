@@ -24,6 +24,7 @@ const Post = ({ username, jobTitle, postText, imageUrl, likes, comments, shares,
         if (commentText.trim()) {
             setCommentCount((prev) => prev + 1); // Increment comments
             setCommentText(""); // Clear input field
+            setShowComments(false)
             alert("Comment Done!");
         }
     };

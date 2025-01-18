@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { z } from 'zod';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography, Container } from '@mui/material';
 
 // Validation schema for feedback form
 const feedbackSchema = z.object({
@@ -47,71 +47,83 @@ const FeedbackPage = () => {
     };
 
     return (
-        <div className='grid grid-cols-12 min-h-screen w-full -mt-6'>
-            <div className="flex items-center justify-center min-h-screen text-black col-span-12">
-                <div className="bg-purple-100 p-8 rounded-lg shadow-lg w-full max-w-lg">
-                    <h2 className="text-2xl font-bold text-center mb-6 text-purple-500">Feedback</h2>
-
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <TextField
-                                label='Name'
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                InputLabelProps={{ style: { color: 'black' } }}
-                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
-                                className="text-black w-full p-3 bg-gray-700 border border-gray-600 rounded focus:ring focus:ring-primary"
-                            />
-                            {errors.name && <p className="text-red-500 text-sm">{errors.name[0]}</p>}
-                        </div>
-
-                        <div className="mb-4">
-                            <TextField
-                                type="email"
-                                label="Email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email"
-                                InputLabelProps={{ style: { color: 'black' } }}
-                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
-                                className="w-full p-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring focus:ring-primary"
-                            />
-                            {errors.email && <p className="text-red-500 text-sm">{errors.email[0]}</p>}
-                        </div>
-
-                        <div className="mb-4">
-                            <TextField
-                                label="Message"
-                                variant="outlined"
-                                multiline
-                                rows={4}
-                                fullWidth
-                                InputLabelProps={{ style: { color: 'black' } }}
-                                InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
-                            />
-                            {errors.message && <p className="text-red-500 text-sm">{errors.message[0]}</p>}
-                        </div>
-
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            fullWidth
-                            className="bg-blue-600 text-white hover:bg-blue-700"
-                            sx={{
-                                textTransform: "none",
-                                boxShadow: "4px 8px 12px rgba(0, 0, 0, 0.3)",
-                            }}
-                        >
-                            Submit
-                        </Button>
-                    </form>
+        <div className="bg-purple-100 flex flex-col justify-center py-6 px-4 sm:px-6 lg:px-8 md:px-80 m-2 rounded-xl">
+                <Typography variant="h5" align="center" className="text-purple-500 font-semibold mb-2">
+                    We Value Your Feedback
+                </Typography>
+                {/* Contribution section */}
+                <div className="my-8 text-start">
+                    <Typography variant="h6" className="text-gray-700 mb-2">
+                        Help Us Make CodeLabs Even Better!
+                    </Typography>
+                    <Typography variant="body1" className="text-gray-600 mb-4">
+                        Your feedback is crucial in improving CodeLabs. Join us in making it the best platform for coders and developers. Share your thoughts, contribute to projects, and help us grow!
+                    </Typography>
                 </div>
-            </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <TextField
+                            label="Name"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            fullWidth
+                            InputLabelProps={{ style: { color: 'black' } }}
+                            InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
+                            className="w-full p-3 bg-gray-100 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500"
+                        />
+                        {errors.name && <p className="text-red-500 text-sm">{errors.name[0]}</p>}
+                    </div>
+
+                    <div className="mb-4">
+                        <TextField
+                            type="email"
+                            label="Email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            fullWidth
+                            InputLabelProps={{ style: { color: 'black' } }}
+                            InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
+                            className="w-full p-3 bg-gray-100 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500"
+                        />
+                        {errors.email && <p className="text-red-500 text-sm">{errors.email[0]}</p>}
+                    </div>
+
+                    <div className="mb-4">
+                        <TextField
+                            label="Message"
+                            variant="outlined"
+                            multiline
+                            rows={4}
+                            fullWidth
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            InputLabelProps={{ style: { color: 'black' } }}
+                            InputProps={{ style: { color: 'black', backgroundColor: 'white' } }}
+                            className="w-full p-3 bg-gray-100 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500"
+                        />
+                        {errors.message && <p className="text-red-500 text-sm">{errors.message[0]}</p>}
+                    </div>
+
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        fullWidth
+                        color="primary"
+                        sx={{
+                            textTransform: "none",
+                            boxShadow: "4px 8px 12px rgba(0, 0, 0, 0.3)",
+                        }}
+                        className="hover:bg-blue-700"
+                    >
+                        Submit Feedback
+                    </Button>
+                </form>
         </div>
     );
 };

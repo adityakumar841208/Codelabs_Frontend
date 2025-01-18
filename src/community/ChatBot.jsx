@@ -9,7 +9,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { addMessage } from '../reduxSlices/ChatBotSlice'; // Ensure correct import of chatSlice
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+// import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const ChatBot = () => {
   const navigate = useNavigate();
@@ -195,7 +195,7 @@ const ChatBot = () => {
       </div>
 
       {/* Input Area */}
-      <div className="bottom-0 sticky left-0 m-2 bg-gray-400 rounded-sm p-4 flex gap-2 items-center shadow-md">
+      <div className="bottom-3 sticky left-0 m-1 bg-blue-700 rounded-sm p-1 flex gap-2 items-center shadow-md">
         <Button
           variant="contained"
           size="small"
